@@ -1,0 +1,49 @@
+---
+import { GROUPS, type Group } from '../data/schedule';
+
+interface Props {
+  time: string;
+  group?: Group;
+  /** Overrides the group name, e.g. "спаринг". */
+  label?: string;
+}
+
+const { time, group, label } = Astro.props;
+---
+
+<div class="slot" data-group={group ?? 'senior'}>
+  <time class="slot__time">{time}</time>
+  <span class="slot__group">{label ?? (group && GROUPS[group])}</span>
+</div>
+
+<style>
+  .slot {
+    padding-left: 10px;
+    border-left: 2px solid var(--group);
+  }
+
+  .slot[data-group='junior'] {
+    --group: var(--group-junior);
+  }
+
+  .slot[data-group='middle'] {
+    --group: var(--group-middle);
+  }
+
+  .slot[data-group='senior'] {
+    --group: var(--group-senior);
+  }
+
+  .slot__time {
+    display: block;
+    color: var(--text);
+    font: 500 14px var(--font-mono);
+  }
+
+  .slot__group {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+</style>

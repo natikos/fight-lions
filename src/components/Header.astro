@@ -1,0 +1,279 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logos/logo-fight-lions.png';
+import { MESSENGERS, NAV, SITE } from '../data/site';
+import SocialLink from './SocialLink.astro';
+---
+
+<header class="header">
+  <div class="container bar">
+    <a class="brand" href="#top" aria-label={`${SITE.name} — на початок сторінки`}>
+      <Image
+        src={logo}
+        alt=""
+        width={60}
+        height={60}
+        densities={[1.5, 2]}
+        class="brand__logo"
+        loading="eager"
+      />
+      <span>
+        <span class="brand__name">{SITE.name}</span>
+        <span class="brand__sub">{SITE.shortOrg.toUpperCase()}</span>
+      </span>
+    </a>
+
+    <button
+      class="burger"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Відкрити меню"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="site-nav" class="nav" aria-label="Основна навігація">
+      {NAV.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="contact">
+      <a class="contact__phone" href={`tel:${SITE.phone.href}`}>
+        {SITE.phone.display}
+      </a>
+      {MESSENGERS.map((m) => (
+        <SocialLink social={m} />
+      ))}
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  document.querySelector('.header').dataset.js = '';
+</script>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.header');
+  const burger = header?.querySelector<HTMLButtonElement>('.burger');
+
+  const setOpen = (open: boolean) => {
+    if (!header || !burger) return;
+    header.toggleAttribute('data-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+  };
+
+  burger?.addEventListener('click', () => setOpen(!header?.hasAttribute('data-open')));
+  header
+    ?.querySelectorAll('.nav a')
+    .forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && header?.hasAttribute('data-open')) {
+      setOpen(false);
+      burger?.focus();
+    }
+  });
+</script>
+
+<style>
+  .header {
+    border-bottom: 1px solid var(--line-subtle);
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 16px;
+    padding-block: 12px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand:hover {
+    color: var(--text);
+  }
+
+  .brand__logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand__name {
+    display: block;
+    font: 700 22px/1 var(--font-display);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .brand__sub {
+    display: none;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font: 400 12px var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 11px;
+    border: 1px solid var(--line-control);
+    background: none;
+    cursor: pointer;
+  }
+
+  .burger span {
+    height: 2px;
+    background: var(--text);
+  }
+
+  .burger span:last-child {
+    width: 60%;
+    background: var(--yellow);
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    grid-column: 1 / -1;
+    padding-block: 8px;
+  }
+
+  .nav a {
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
+    font: 500 15px var(--font-body);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+
+  .nav a:hover {
+    border-color: var(--yellow);
+    color: var(--text);
+  }
+
+  .contact {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+  }
+
+  .contact__phone {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    background: var(--gradient-yellow);
+    color: var(--bg-section);
+    font: 600 14px var(--font-body);
+    text-decoration: none;
+  }
+
+  .contact__phone:hover {
+    color: var(--bg-section);
+  }
+
+  @media (min-width: 700px) {
+    .contact__phone {
+      flex: 0 1 360px;
+    }
+  }
+
+  /* With JS the nav collapses behind the burger on small screens. */
+  .header[data-js] .burger {
+    display: flex;
+  }
+
+  .header[data-js] .nav {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line-subtle);
+  }
+
+  .header[data-js][data-open] .nav {
+    display: flex;
+  }
+
+  @media (min-width: 1100px) {
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 18px;
+    }
+
+    .brand {
+      gap: 16px;
+    }
+
+    .brand__logo {
+      width: 60px;
+      height: 60px;
+    }
+
+    .brand__name {
+      font-size: 24px;
+    }
+
+    .brand__sub {
+      display: block;
+    }
+
+    .header[data-js] .burger {
+      display: none;
+    }
+
+    .nav,
+    .header[data-js] .nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 26px;
+      padding: 0;
+      border: 0;
+    }
+
+    .nav a {
+      padding: 8px 0;
+    }
+
+    .contact {
+      gap: 14px;
+      padding: 0;
+    }
+
+    .contact__phone {
+      flex: none;
+      min-height: 0;
+      margin-right: 6px;
+      background: none;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .contact__phone:hover {
+      color: var(--yellow);
+    }
+  }
+</style>

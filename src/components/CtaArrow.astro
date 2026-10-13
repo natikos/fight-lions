@@ -1,0 +1,62 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class="cta" {href}>
+  <span>
+    <slot />
+  </span>
+  <b aria-hidden="true">↓</b>
+</a>
+
+<style>
+  .cta {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--yellow);
+    background: rgb(19 21 23 / 55%);
+    color: var(--text);
+    font: 600 14px/1.2 var(--font-body);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .cta span {
+    flex: 1;
+    padding: 17px 24px;
+  }
+
+  .cta b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    background: var(--yellow);
+    color: var(--bg-section);
+    font: 500 20px var(--font-mono);
+    transition: transform 0.3s;
+  }
+
+  .cta:hover {
+    background: rgb(227 183 46 / 14%);
+    color: var(--text);
+  }
+
+  .cta:hover b {
+    transform: translateY(4px);
+  }
+
+  @media (min-width: 768px) {
+    .cta {
+      display: inline-flex;
+    }
+  }
+</style>

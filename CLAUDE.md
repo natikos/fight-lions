@@ -21,7 +21,7 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
 
 - Site language is Ukrainian only (`<html lang="uk">`). No English version for launch; keep routing i18n-ready.
 - Do not invent people, results, prices or insurance claims. Unconfirmed items are listed in `pkg/README.md` ("Ще не підтверджено"); use clearly marked placeholders and mention them.
-- Schedule, coaches and belts live in `src/data/*.json`, not in markup.
+- Schedule, coaches and belts live in `src/data/*.ts` (typed modules), not in markup.
 - Straight corners everywhere (no border-radius). Moderate CSS-only animation; always honour `prefers-reduced-motion`.
 - One `h1` per page ("Рукопашний бій у Львові" on home). Unique, descriptive image alt text.
 - City is just "Львів" (Брюховичі only inside a gym address). Group names: Молодша / Середня / Старша.

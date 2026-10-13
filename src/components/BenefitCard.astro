@@ -1,0 +1,63 @@
+---
+import type { IconName } from '../data/icons';
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: IconName;
+  title: string;
+  text: string;
+}
+
+const { icon, title, text } = Astro.props;
+---
+
+<li class="benefit">
+  <div class="benefit__icon">
+    <Icon name={icon} size={30} />
+  </div>
+  <h3 class="display benefit__title">{title}</h3>
+  <p class="benefit__text">{text}</p>
+</li>
+
+<style>
+  .benefit {
+    padding-top: 24px;
+    border-top: 2px solid var(--yellow);
+    color: var(--yellow);
+    transition: transform 0.35s var(--ease);
+  }
+
+  .benefit:hover {
+    transform: translateY(-3px);
+  }
+
+  .benefit__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    transition: border-color 0.3s;
+  }
+
+  .benefit:hover .benefit__icon {
+    border-color: var(--yellow);
+  }
+
+  .benefit__title {
+    color: var(--text);
+    font-size: 28px;
+    line-height: 1.05;
+  }
+
+  .benefit__text {
+    max-width: 380px;
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  /** Section number and name, e.g. "01 / НАПРЯМКИ". */
+  eyebrow?: string;
+  id: string;
+  size?: 'md' | 'lg';
+}
+
+const { eyebrow, id, size = 'md' } = Astro.props;
+---
+
+<div class="heading">
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2 {id} class:list={['display', 'title', `title--${size}`]}>
+    <slot />
+  </h2>
+</div>
+
+<style>
+  .eyebrow {
+    margin-bottom: 16px;
+    color: var(--yellow);
+    font: 500 13px var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+
+  .title {
+    font-size: clamp(32px, 6.4vw, 44px);
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .title--lg {
+    font-size: clamp(36px, 7.4vw, 52px);
+  }
+</style>

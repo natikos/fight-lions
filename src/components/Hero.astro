@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/images/photo-hero-grappling.jpg';
+import CtaArrow from './CtaArrow.astro';
+---
+
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <div class="hero__photo">
+    <Image
+      src={hero}
+      alt="Партерна боротьба на змаганнях Львівської федерації рукопашного бою"
+      widths={[640, 1000]}
+      sizes="(min-width: 768px) 72vw, 100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <i class="gl gl--left" aria-hidden="true"></i>
+  <i class="gl gl--center" aria-hidden="true"></i>
+  <i class="gl gl--right" aria-hidden="true"></i>
+
+  <div class="container hero__inner">
+    <h1 id="hero-title" class="display hero__title">
+      Рукопашний
+      <br />
+      <span class="outline">бій</span> у&nbsp;Львові
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__lead">
+        Секція рукопашного бою для дітей і дорослих — від першого заняття до чорного пояса. Бій у
+        стійці й партері, кидки, захист у несподіваних ситуаціях.
+      </p>
+      <div class="hero__cta">
+        <CtaArrow href="#training">Знайти свій зал</CtaArrow>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-subtle);
+    background:
+      radial-gradient(80% 40% at 90% 0%, rgb(60 111 182 / 35%), rgb(60 111 182 / 0%) 70%),
+      var(--bg-base);
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 380px;
+    mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  }
+
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: drift 24s ease-in-out infinite alternate;
+  }
+
+  .hero__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(19 21 23 / 0%) 55%, rgb(19 21 23 / 70%));
+  }
+
+  .gl {
+    display: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    padding-top: 200px;
+    padding-bottom: 28px;
+  }
+
+  .hero__title {
+    --outline-width: 1.5px;
+    font-size: clamp(3.4rem, 15.8vw, 4.6rem);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    text-shadow: 0 6px 24px rgb(0 0 0 / 60%);
+    animation: lift 0.9s var(--ease) 0.1s both;
+  }
+
+  .hero__lead {
+    margin: 20px 0 22px;
+    padding-left: 14px;
+    border-left: 2px solid var(--yellow);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.55;
+    animation: rise 0.8s var(--ease) 0.45s both;
+  }
+
+  .hero__cta {
+    animation: rise 0.8s var(--ease) 0.6s both;
+  }
+
+  @keyframes drift {
+    from {
+      transform: scale(1.02);
+    }
+
+    to {
+      transform: scale(1.09) translateX(-1.5%);
+    }
+  }
+
+  @keyframes lift {
+    from {
+      transform: translateY(22px);
+    }
+
+    to {
+      transform: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero__photo {
+      inset: 0 0 0 auto;
+      width: 72%;
+      height: auto;
+      mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+    }
+
+    .hero {
+      background:
+        radial-gradient(60% 90% at 85% 10%, rgb(60 111 182 / 35%), rgb(60 111 182 / 0%) 70%),
+        var(--bg-base);
+    }
+
+    .gl {
+      position: absolute;
+      inset-block: 0;
+      display: block;
+      width: 1px;
+      background: rgb(237 232 223 / 7%);
+    }
+
+    .gl--left {
+      left: var(--gutter);
+    }
+
+    .gl--center {
+      left: calc(50% - 1px);
+    }
+
+    .gl--right {
+      right: var(--gutter);
+    }
+
+    .hero__inner {
+      padding-top: clamp(80px, 8vw, 110px);
+      padding-bottom: 40px;
+    }
+
+    .hero__title {
+      --outline-width: 2px;
+      font-size: clamp(6rem, 13.2vw, 11.9rem);
+      min-height: clamp(260px, 29vw, 430px);
+    }
+
+    .hero__foot {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .hero__lead {
+      max-width: 440px;
+      margin: 0;
+      padding-left: 18px;
+      font-size: 19px;
+    }
+  }
+</style>

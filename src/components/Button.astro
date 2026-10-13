@@ -1,0 +1,45 @@
+---
+interface Props {
+  href: string;
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const { href, size = 'md', class: className } = Astro.props;
+---
+
+<a class:list={['btn', `btn--${size}`, className]} {href}>
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 24px;
+    background: var(--gradient-yellow);
+    color: var(--bg-section);
+    font: 600 15px/1.2 var(--font-body);
+    text-align: center;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+
+  .btn:hover {
+    color: var(--bg-section);
+    filter: brightness(1.08);
+  }
+
+  .btn--lg {
+    padding: 18px 28px;
+    font-size: clamp(17px, 4.6vw, 20px);
+  }
+
+  @media (min-width: 768px) {
+    .btn--lg {
+      padding: 20px 36px;
+    }
+  }
+</style>

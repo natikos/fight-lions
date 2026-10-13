@@ -1,0 +1,33 @@
+---
+import Rule from './Rule.astro';
+
+interface Props {
+  id: string;
+  /** `panel` = gradient background with yellow→blue separators above and below. */
+  variant?: 'flat' | 'panel';
+  labelledby?: string;
+  class?: string;
+}
+
+const { id, variant = 'flat', labelledby, class: className } = Astro.props;
+---
+
+<section
+  {id}
+  aria-labelledby={labelledby}
+  class:list={['section', `section--${variant}`, className]}
+>
+  {variant === 'panel' && <Rule />}
+  <slot />
+  {variant === 'panel' && <Rule />}
+</section>
+
+<style>
+  .section {
+    border-bottom: 1px solid var(--line-subtle);
+  }
+
+  .section--panel {
+    background: var(--bg-panel-gradient);
+  }
+</style>

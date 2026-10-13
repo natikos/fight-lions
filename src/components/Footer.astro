@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import federation from '../assets/logos/logo-federation-ukraine.png';
+import lions from '../assets/logos/logo-fight-lions.png';
+import { SITE } from '../data/site';
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <div class="brand">
+      <Image
+        src={lions}
+        alt="Логотип Fight Lions"
+        width={40}
+        height={40}
+        densities={[2]}
+        loading="lazy"
+      />
+      <span class="brand__name">{SITE.name}</span>
+      <Image
+        src={federation}
+        alt="Логотип Федерації рукопашного бою України"
+        width={40}
+        height={40}
+        densities={[2]}
+        loading="lazy"
+      />
+    </div>
+    <a class="results" href={SITE.tournamentHub} target="_blank" rel="noopener noreferrer">
+      РЕЗУЛЬТАТИ ЗМАГАНЬ · TOURNAMENTHUB →
+    </a>
+    <p class="copy">© {SITE.orgName}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line-subtle);
+    background: var(--bg-footer);
+  }
+
+  .inner {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    padding-block: 22px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand__name {
+    font: 700 20px/1 var(--font-display);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .results {
+    padding-block: 12px 2px;
+    border-bottom: 1px solid var(--yellow);
+    color: var(--text-secondary);
+    font: 500 12px/1.4 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+
+  .results:hover {
+    color: var(--yellow);
+  }
+
+  .copy {
+    color: var(--text-faint);
+    font: 400 12px/1.6 var(--font-mono);
+  }
+
+  @media (min-width: 900px) {
+    .inner {
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      justify-items: center;
+      gap: 16px 32px;
+    }
+
+    .copy {
+      text-align: right;
+    }
+  }
+</style>

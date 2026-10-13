@@ -1,0 +1,13 @@
+{
+  "name": "Fight Lions — Львівська обласна федерація рукопашного бою",
+  "short_name": "Fight Lions",
+  "lang": "uk",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#131517",
+  "theme_color": "#131517",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

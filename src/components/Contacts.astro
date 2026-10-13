@@ -1,0 +1,247 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logos/logo-fight-lions.png';
+import { MESSENGERS, SITE, SOCIALS } from '../data/site';
+import Button from './Button.astro';
+import SocialLink from './SocialLink.astro';
+---
+
+<section id="contacts" class="contacts" aria-labelledby="contacts-title">
+  <div class="container inner">
+    <p class="eyebrow">05 / ЗАПИС І КОНТАКТИ</p>
+
+    <div class="emblem" aria-hidden="true">
+      <i class="emblem__glow"></i>
+      <i class="emblem__ring emblem__ring--outer"></i>
+      <i class="emblem__ring emblem__ring--arc"></i>
+      <i class="emblem__ring emblem__ring--inner"></i>
+      <Image src={logo} alt="" width={340} height={340} densities={[1, 2]} loading="lazy" />
+    </div>
+
+    <h2 id="contacts-title" class="display title">
+      Перше заняття
+      <br />
+      <span class="outline">безкоштовно</span>
+    </h2>
+    <p class="lead">
+      Зателефонуйте або напишіть — підкажемо найближчий зал і групу. Власне спорядження не потрібне.
+    </p>
+
+    <div class="actions">
+      <Button href={`tel:${SITE.phone.href}`} size="lg" class="actions__phone">
+        {SITE.phone.display}
+      </Button>
+      <div class="actions__messengers">
+        {MESSENGERS.map((m) => (
+          <SocialLink social={m} size={60} />
+        ))}
+      </div>
+    </div>
+
+    <p class="socials__title">МИ В СОЦМЕРЕЖАХ</p>
+    <div class="socials">
+      {SOCIALS.map((s) => (
+        <SocialLink social={s} variant="label" size={48} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacts {
+    position: relative;
+    overflow: hidden;
+    border-top: 2px solid var(--yellow);
+    background: var(--bg-contacts);
+  }
+
+  .inner {
+    position: relative;
+    padding-block: 48px 56px;
+  }
+
+  .eyebrow {
+    margin-bottom: 16px;
+    color: var(--yellow);
+    font: 500 13px var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+
+  .emblem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(220px, 56vw);
+    aspect-ratio: 1;
+    margin: 16px 0 12px auto;
+    pointer-events: none;
+  }
+
+  .emblem img {
+    position: relative;
+    width: 52%;
+    height: auto;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 24px 30px rgb(0 0 0 / 60%));
+  }
+
+  .emblem i {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .emblem__glow {
+    inset: 8%;
+    background: radial-gradient(closest-side, rgb(60 111 182 / 55%), rgb(60 111 182 / 0%) 72%);
+    animation: glow 5s ease-in-out infinite;
+  }
+
+  .emblem__ring--outer {
+    inset: 0;
+    border: 1px dashed rgb(237 232 223 / 28%);
+    animation: spin 50s linear infinite;
+  }
+
+  .emblem__ring--arc {
+    inset: 11%;
+    border: 2px solid transparent;
+    border-top-color: var(--yellow);
+    border-right-color: rgb(227 183 46 / 35%);
+    animation: spin 22s linear infinite reverse;
+  }
+
+  .emblem__ring--inner {
+    inset: 21%;
+    border: 1px solid rgb(60 111 182 / 60%);
+  }
+
+  .title {
+    --outline-width: 1.5px;
+    margin-bottom: 24px;
+    font-size: clamp(3.2rem, 27px + 7.4vw, 8.25rem);
+    line-height: 0.88;
+  }
+
+  .lead {
+    max-width: 560px;
+    margin-bottom: 28px;
+    padding-left: 18px;
+    border-left: 2px solid var(--yellow);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.55;
+  }
+
+  .actions {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .actions__messengers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .actions__messengers :global(.social) {
+    width: 100%;
+  }
+
+  .socials__title {
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    font: 500 12px var(--font-mono);
+    letter-spacing: 0.14em;
+  }
+
+  .socials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .socials :global(.social) {
+    width: 100%;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  @media (min-width: 700px) {
+    .inner {
+      padding-block: 80px 96px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .actions__messengers {
+      display: flex;
+      gap: 16px;
+    }
+
+    .actions__messengers :global(.social) {
+      width: 60px;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .socials :global(.social) {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .inner {
+      padding-block: 104px 120px;
+    }
+
+    .emblem {
+      position: absolute;
+      top: 60px;
+      right: clamp(16px, 5vw, 70px);
+      width: clamp(380px, 47vw, 680px);
+      margin: 0;
+    }
+
+    .title {
+      --outline-width: 2px;
+    }
+  }
+</style>

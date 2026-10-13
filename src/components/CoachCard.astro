@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logos/logo-fight-lions.png';
+import type { Coach } from '../data/coaches';
+
+interface Props {
+  coach: Coach;
+  featured?: boolean;
+}
+
+const { coach, featured = false } = Astro.props;
+---
+
+<li class:list={['coach', { 'coach--featured': featured }]}>
+  <div class="coach__photo">
+    {coach.photo ? (
+      <Image
+        src={coach.photo}
+        alt={coach.alt}
+        widths={[480, 720, 960]}
+        sizes="(min-width: 1100px) 32vw, (min-width: 700px) 50vw, 100vw"
+        style={`object-position:${coach.position ?? '50% 20%'}`}
+        loading="lazy"
+      />
+    ) : (
+      <Image src={logo} alt="" width={160} height={160} class="coach__stub" loading="lazy" />
+    )}
+  </div>
+  <h3 class="display coach__name">{coach.name}</h3>
+  <p class="coach__role">{coach.role}</p>
+</li>
+
+<style>
+  .coach {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .coach--featured {
+    border-top: 2px solid var(--yellow);
+  }
+
+  .coach__photo {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.6;
+    border: 1px solid var(--line-photo);
+    background: repeating-linear-gradient(135deg, #242a30 0 14px, #1e2327 14px 28px);
+  }
+
+  .coach__photo :global(img:not(.coach__stub)) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .coach:hover .coach__photo :global(img:not(.coach__stub)) {
+    transform: scale(1.04);
+  }
+
+  .coach__photo :global(.coach__stub) {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 38%;
+    height: auto;
+    opacity: 0.35;
+    filter: grayscale(1);
+  }
+
+  .coach__name {
+    margin-top: 20px;
+    font-size: clamp(32px, 7vw, 40px);
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .coach__role {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (min-width: 700px) {
+    .coach__photo {
+      aspect-ratio: 1 / 1.1;
+    }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  note: string;
+}
+
+const { num, title, note } = Astro.props;
+---
+
+<div class="hall">
+  <span class="hall__num">{num}</span>
+  <div>
+    <h3 class="hall__title">{title}</h3>
+    <p class="hall__note">{note}</p>
+  </div>
+</div>
+
+<style>
+  .hall {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .hall__num {
+    min-width: 28px;
+    color: var(--yellow);
+    font: 500 14px var(--font-mono);
+    line-height: 1.7;
+  }
+
+  .hall__title {
+    font: 600 17px/1.25 var(--font-body);
+  }
+
+  .hall__note {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  @media (min-width: 1100px) {
+    .hall {
+      gap: 16px;
+    }
+
+    .hall__num {
+      min-width: 0;
+      background: linear-gradient(180deg, #59616a, rgb(89 97 106 / 0%));
+      background-clip: text;
+      color: transparent;
+      font: 700 36px/1 var(--font-display);
+    }
+  }
+</style>

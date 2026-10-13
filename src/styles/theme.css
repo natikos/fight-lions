@@ -32,10 +32,55 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
   /* Layout: min supported viewport is 360px */
-  --container-max: 1200px;
-  --gutter: clamp(16px, 4vw, 40px);
+  --container-max: 1440px;
+  --gutter: clamp(16px, 4vw, 56px);
   --section-space: clamp(56px, 9vw, 120px);
 
   /* Shape: straight corners everywhere */
   --radius: 0;
+}
+
+:root {
+  /* Section backgrounds */
+  --bg-page: linear-gradient(180deg, #1b1e22 0%, #17191c 35%, #131517 100%);
+  --bg-panel-gradient:
+    radial-gradient(45% 50% at 92% 6%, rgb(60 111 182 / 18%), rgb(60 111 182 / 0%) 70%),
+    linear-gradient(180deg, #252b31 0%, #1a1e22 100%);
+  --bg-contacts:
+    radial-gradient(60% 90% at 85% 0%, rgb(60 111 182 / 36%), rgb(60 111 182 / 0%) 70%),
+    radial-gradient(45% 60% at 0% 100%, rgb(227 183 46 / 14%), rgb(227 183 46 / 0%) 70%), #111315;
+  --bg-footer: linear-gradient(180deg, #121416, #0b0c0d);
+  --hover-wash: linear-gradient(90deg, rgb(60 111 182 / 12%), rgb(60 111 182 / 0%));
+
+  /* Extra neutrals */
+  --line-control: #5a6168;
+  --line-photo: #2f353b;
+  --text-faint: #7e8187;
+  --focus: var(--blue-light);
+
+  /* Brand colors (social buttons) */
+  --brand-telegram: #229ed9;
+  --brand-viber: #7360f2;
+  --brand-youtube: #e52d27;
+  --brand-facebook: #1877f2;
+  --brand-instagram: linear-gradient(45deg, #f9a13a 0%, #e1306c 50%, #833ab4 100%);
+
+  /* Group colors in the schedule */
+  --group-junior: var(--yellow);
+  --group-middle: #5b8fd6;
+  --group-senior: var(--text);
+
+  /* Belt colors */
+  --belt-white: #f2f0ea;
+  --belt-purple: #7a4b9e;
+  --belt-red: #c23b30;
+  --belt-orange: #e8832a;
+  --belt-blue: #2f6db5;
+  --belt-yellow: #e3b72e;
+  --belt-green: #3e9a55;
+  --belt-brown: #7a4f2d;
+  --belt-black: #0b0c0d;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

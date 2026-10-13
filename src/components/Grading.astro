@@ -1,0 +1,255 @@
+---
+import { Image } from 'astro:assets';
+import ceremony from '../assets/images/photo-grading-ceremony.jpg';
+import { BELTS, BLACK_BELT } from '../data/belts';
+import Belt from './Belt.astro';
+import Section from './Section.astro';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<Section id="grading" variant="panel" labelledby="grading-title">
+  <div class="photo">
+    <Image
+      src={ceremony}
+      alt="Атестація на пояси у Львівській обласній федерації рукопашного бою: учні з дипломами"
+      widths={[640, 1000, 1600]}
+      sizes="100vw"
+      loading="lazy"
+    />
+    <div class="photo__shade" aria-hidden="true"></div>
+    <p class="container photo__label">АТЕСТАЦІЯ НА НОВИЙ ПОЯС</p>
+  </div>
+
+  <div class="container wrap">
+    <div class="text">
+      <SectionHeading id="grading-title" eyebrow="02 / ГРАДАЦІЯ">
+        Від білого до чорного пояса
+      </SectionHeading>
+      <p>
+        Вісім кольорів, у кожного два ступені кю: без смужки і зі смужкою кольору наступного пояса.
+        Чорний пояс — не фініш: далі йдуть дани та подальший розвиток. На татамі кожен стоїть за
+        кольором свого пояса.
+      </p>
+      <p>За словами федерації, перший пояс і медаль — орієнтовно за півроку занять.</p>
+    </div>
+
+    <div class="table" role="table" aria-label="Система поясів">
+      <div class="row row--head" role="row">
+        <span class="col-title" role="columnheader">
+          КЮ · ПОЯС
+        </span>
+        <span class="col-title" role="columnheader">
+          БЕЗ СМУЖКИ
+        </span>
+        <span class="col-title" role="columnheader">
+          ЗІ СМУЖКОЮ
+        </span>
+      </div>
+      {BELTS.map((b, i) => (
+        <div class:list={['row', { 'row--first': i === 0 }]} role="row">
+          <div class="who" role="rowheader">
+            <span class="name">{b.name}</span>
+            <span class="kyu">{b.kyu} кю</span>
+          </div>
+          <div class="cell" role="cell">
+            <Belt color={b.color} />
+          </div>
+          <div class="cell" role="cell">
+            <Belt color={b.color} stripe={b.stripe} />
+          </div>
+        </div>
+      ))}
+      <div class="row row--black" role="row">
+        <div class="who" role="rowheader">
+          <span class="name">{BLACK_BELT.name}</span>
+          <span class="kyu">дани</span>
+        </div>
+        <div class="cell" role="cell">
+          <Belt color="black" />
+        </div>
+        <span class="cell tbd" role="cell">
+          далі — розвиток
+        </span>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .photo {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 38%;
+    filter: grayscale(0.45) contrast(1.05) brightness(0.8);
+  }
+
+  .photo__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgb(26 30 34 / 15%) 0%,
+      rgb(26 30 34 / 55%) 55%,
+      #1e2328 100%
+    );
+  }
+
+  .photo__label {
+    position: absolute;
+    inset: auto 0 56px;
+    color: var(--text);
+    font: 500 11px var(--font-mono);
+    letter-spacing: 0.14em;
+  }
+
+  .wrap {
+    position: relative;
+    display: grid;
+    gap: 32px;
+    margin-top: -40px;
+    padding-block: 40px calc(var(--section-space) * 0.8);
+  }
+
+  .text {
+    display: grid;
+    gap: 14px;
+  }
+
+  .text :global(.heading) {
+    margin-bottom: 4px;
+  }
+
+  .text p:not(.eyebrow) {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(104px, 0.9fr) 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 0;
+    border-top: 1px solid var(--line);
+    transition: background 0.25s;
+  }
+
+  .row:not(.row--head):hover {
+    background: var(--hover-wash);
+  }
+
+  .row--head {
+    padding: 0 0 8px;
+    border: 0;
+  }
+
+  .row--first {
+    border-top: 2px solid var(--text);
+  }
+
+  .row--black {
+    border-top: 2px solid var(--yellow);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .col-title,
+  .kyu,
+  .tbd {
+    font-family: var(--font-mono);
+  }
+
+  .col-title {
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .name {
+    display: block;
+    font: 700 clamp(16px, 4.4vw, 20px) / 1 var(--font-display);
+    text-transform: uppercase;
+  }
+
+  .kyu {
+    display: block;
+    margin-top: 3px;
+    color: var(--yellow);
+    font-size: 11px;
+  }
+
+  .row--black .name {
+    color: var(--yellow);
+  }
+
+  .tbd {
+    color: var(--blue-light);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .photo {
+      height: 360px;
+    }
+
+    .photo__label {
+      bottom: 150px;
+    }
+
+    .row {
+      grid-template-columns: 266px 1fr 1fr;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    /* Desktop: kyu and name sit side by side. */
+    .who {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .kyu {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .name {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .wrap {
+      margin-top: -40px;
+      padding-top: 72px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .wrap {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+    }
+
+    .text {
+      grid-column: 1 / span 4;
+      align-content: start;
+    }
+
+    .table {
+      grid-column: 6 / span 7;
+    }
+  }
+</style>

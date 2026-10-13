@@ -1,0 +1,45 @@
+---
+import { COACHES } from '../data/coaches';
+import CoachCard from './CoachCard.astro';
+import Section from './Section.astro';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<Section id="coaches" labelledby="coaches-title">
+  <div class="container wrap">
+    <SectionHeading id="coaches-title" eyebrow="03 / ТРЕНЕРИ">
+      Хто веде зали
+    </SectionHeading>
+    <ul class="grid">
+      {COACHES.map((coach, i) => (
+        <CoachCard {coach} featured={i === 0} />
+      ))}
+    </ul>
+  </div>
+</Section>
+
+<style>
+  .wrap {
+    padding-block: var(--section-space);
+  }
+
+  .grid {
+    display: grid;
+    gap: 28px;
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 700px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

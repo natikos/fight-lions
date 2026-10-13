@@ -1,0 +1,85 @@
+---
+import type { Social } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  social: Social;
+  /** `icon` = square icon-only button; `label` = icon + text. */
+  variant?: 'icon' | 'label';
+  size?: number;
+  class?: string;
+}
+
+const { social, variant = 'icon', size = 44, class: className } = Astro.props;
+const external = social.href?.startsWith('http');
+---
+
+{social.href && (
+  <a
+    class:list={['social', `social--${social.id}`, `social--${variant}`, className]}
+    href={social.href}
+    aria-label={variant === 'icon' ? social.label : undefined}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    style={`--size:${size}px`}
+  >
+    <Icon name={social.id} size={variant === 'icon' ? Math.round(size * 0.42) : 20} />
+    {variant === 'label' && <span>{social.label}</span>}
+  </a>
+)}
+
+<style>
+  .social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 44px;
+    height: var(--size);
+    color: #fff;
+    font: 500 13px var(--font-mono);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+
+  .social:hover {
+    color: #fff;
+    filter: brightness(1.15);
+  }
+
+  .social--icon {
+    width: var(--size);
+  }
+
+  .social--label {
+    padding-inline: 18px;
+  }
+
+  .social--telegram {
+    background: var(--brand-telegram);
+  }
+
+  .social--viber {
+    background: var(--brand-viber);
+  }
+
+  .social--instagram {
+    background: var(--brand-instagram);
+  }
+
+  .social--youtube {
+    background: var(--brand-youtube);
+  }
+
+  .social--facebook {
+    background: var(--brand-facebook);
+  }
+
+  .social--tiktok {
+    background: var(--belt-black);
+    box-shadow:
+      -2px -2px 0 #25f4ee,
+      2px 2px 0 #fe2c55;
+  }
+</style>
