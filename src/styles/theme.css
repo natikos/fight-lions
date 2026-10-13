@@ -1,0 +1,41 @@
+/* Design tokens. The single source of truth for colors, type, spacing and layout.
+   Components must use these variables; never hardcode a color or font. */
+:root {
+  /* Surfaces */
+  --bg-base: #131517;
+  --bg-section: #17191c;
+  --bg-panel: #1b1e22;
+  --bg-panel-alt: #1a1e22;
+  --bg-raised: linear-gradient(180deg, #252b31, #1a1e22);
+
+  /* Lines */
+  --line: #3a4046;
+  --line-subtle: #2a2f34;
+
+  /* Text */
+  --text: #ede8df;
+  --text-secondary: #cfcbc1;
+  --text-muted: #a9a79f;
+
+  /* Accents (flag colors, restrained) */
+  --yellow: #e3b72e;
+  --yellow-light: #f2ce55;
+  --blue: #3c6fb6;
+  --blue-light: #7fa6dd;
+  --gradient-yellow: linear-gradient(180deg, var(--yellow-light), var(--yellow));
+  --gradient-separator: linear-gradient(90deg, var(--yellow), var(--blue), transparent);
+  --separator-height: 2px;
+
+  /* Typography */
+  --font-display: 'Fira Sans Extra Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Layout: min supported viewport is 360px */
+  --container-max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --section-space: clamp(56px, 9vw, 120px);
+
+  /* Shape: straight corners everywhere */
+  --radius: 0;
+}
