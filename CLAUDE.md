@@ -28,7 +28,8 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
 
 ## SEO / migration
 
-- Old site URLs: `/`, `/rozklad`, `/pro-biy`, `/zmahannia/`, `/adult`, `/kids`, `/girls`. Do not drop them silently: keep as pages or 301-redirect (decision pending).
+- **Single landing page only** (no extra pages for now). Everything lives on `/` as anchored sections; the only other route is the 404 page.
+- Old site URLs (`/rozklad`, `/pro-biy`, `/zmahannia/`, `/adult`, `/kids`, `/girls`) must redirect to the matching section anchor on `/`. Define them once in one place; Astro's static `redirects` emit meta-refresh pages, so real 301s must also be configured on the host once it is chosen.
 - Keep contact data consistent everywhere (phone +380977089715, Telegram t.me/Rykopashka, Instagram fightlions_lviv, YouTube, Viber). Facebook/TikTok links are unconfirmed.
 - Needs: canonical, OG/Twitter, JSON-LD `SportsOrganization`, sitemap, robots.txt, self-hosted fonts (Fira Sans Extra Condensed, IBM Plex Sans/Mono).
 
@@ -45,3 +46,4 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
   - Accessibility: real `alt` text (unique, descriptive; empty for decorative), visible focus states, WCAG AA contrast, keyboard-operable menu with `aria-expanded`, `prefers-reduced-motion` respected.
   - Local SEO: NAP (name, address, phone) identical everywhere and in JSON-LD; `tel:` links.
 - Before finishing any task: `bun run verify`, then check the page at 360px and 1440px in a browser.
+- Lighthouse runs are deferred (to be set up later); still build to the targets above.
