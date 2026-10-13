@@ -30,7 +30,7 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
 
 - **Single landing page only** (no extra pages for now). Everything lives on `/` as anchored sections; the only other route is the 404 page.
 - Old site URLs (`/rozklad`, `/pro-biy`, `/zmahannia/`, `/adult`, `/kids`, `/girls`) must redirect to the matching section anchor on `/`. Define them once in one place; Astro's static `redirects` emit meta-refresh pages, so real 301s must also be configured on the host once it is chosen.
-- Keep contact data consistent everywhere (phone +380977089715, Telegram t.me/Rykopashka, Instagram fightlions_lviv, YouTube, Viber). Facebook/TikTok links are unconfirmed.
+- Keep contact data consistent everywhere (phone +380977089715, Telegram t.me/Rykopashka, Instagram fightlions_lviv, YouTube, Viber). Facebook: https://www.facebook.com/fightlions.lviv. TikTok link is not available yet: keep a placeholder (`#`) and hide or mark it until provided.
 - Needs: canonical, OG/Twitter, JSON-LD `SportsOrganization`, sitemap, robots.txt, self-hosted fonts (Fira Sans Extra Condensed, IBM Plex Sans/Mono).
 
 ## Quality bar (non-negotiable)
