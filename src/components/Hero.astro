@@ -63,7 +63,6 @@ import CtaArrow from './CtaArrow.astro';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: drift 24s ease-in-out infinite alternate;
   }
 
   .hero__shade {
@@ -93,32 +92,6 @@ import CtaArrow from './CtaArrow.astro';
     line-height: 0.86;
     letter-spacing: -0.01em;
     text-shadow: 0 6px 24px color-mix(in srgb, var(--black) 60%, transparent);
-    animation: lift 0.9s var(--ease) 0.1s both;
-  }
-
-  .hero__lead {
-    margin: var(--space-5) 0 var(--space-6);
-    padding-left: var(--space-4);
-    border-left: 2px solid var(--yellow);
-    color: var(--text);
-    font-size: var(--fs-16);
-    line-height: 1.55;
-    text-wrap: pretty;
-    animation: rise 0.8s var(--ease) 0.45s both;
-  }
-
-  .hero__cta {
-    animation: rise 0.8s var(--ease) 0.6s both;
-  }
-
-  @keyframes drift {
-    from {
-      transform: scale(1.02);
-    }
-
-    to {
-      transform: scale(1.09) translateX(-1.5%);
-    }
   }
 
   @keyframes scan {
@@ -131,22 +104,29 @@ import CtaArrow from './CtaArrow.astro';
     }
   }
 
-  @keyframes lift {
-    from {
-      transform: translateY(22px);
-    }
-
-    to {
-      transform: none;
-    }
+  .hero__lead {
+    margin: var(--space-5) 0 var(--space-6);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--yellow);
+    color: var(--text);
+    font-size: var(--fs-16);
+    line-height: 1.55;
+    text-wrap: pretty;
   }
 
   @media (min-width: 768px) {
     .hero__photo {
-      inset: 0 0 0 auto;
-      width: 72%;
+      /* Capped so the 1000px-wide source is never upscaled. */
+      inset: 0 var(--stage-inset) 0 auto;
+      width: min(72%, calc(var(--container-max) * 0.72));
       height: auto;
-      mask-image: linear-gradient(90deg, transparent 0, var(--black) 38%);
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        var(--black) 38%,
+        var(--black) 92%,
+        transparent 100%
+      );
     }
 
     .hero {
@@ -183,11 +163,11 @@ import CtaArrow from './CtaArrow.astro';
     }
 
     .gl--left {
-      left: var(--gutter);
+      left: calc(var(--stage-inset) + var(--gutter));
     }
 
     .gl--right {
-      right: var(--gutter);
+      right: calc(var(--stage-inset) + var(--gutter));
     }
 
     .hero__inner {

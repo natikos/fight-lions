@@ -39,6 +39,8 @@
 
   /* Layout: min supported viewport is 360px */
   --container-max: 1440px;
+  /* Side gap between the viewport and the centred content band, 0 below --container-max. */
+  --stage-inset: max(0px, calc((100% - var(--container-max)) / 2));
   --gutter: clamp(16px, 4vw, 56px);
   --section-space: clamp(44px, 7vw, 88px);
 

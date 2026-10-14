@@ -92,14 +92,25 @@ import SectionHeading from './SectionHeading.astro';
 
 <style>
   .photo {
+    /* On the image and the shade, not the wrapper, so the label stays opaque. */
+    --edge-fade: linear-gradient(
+      90deg,
+      transparent 0,
+      var(--black) 7%,
+      var(--black) 93%,
+      transparent 100%
+    );
     position: relative;
+    max-width: var(--container-max);
     height: 200px;
+    margin-inline: auto;
     overflow: hidden;
   }
 
   .photo :global(img) {
     width: 100%;
     height: 100%;
+    mask-image: var(--edge-fade);
     object-fit: cover;
     object-position: 50% 38%;
     filter: grayscale(0.45) contrast(1.05) brightness(0.8);
@@ -108,6 +119,7 @@ import SectionHeading from './SectionHeading.astro';
   .photo__shade {
     position: absolute;
     inset: 0;
+    mask-image: var(--edge-fade);
     background: linear-gradient(
       180deg,
       color-mix(in srgb, var(--bg-panel-alt) 15%, transparent) 0%,
