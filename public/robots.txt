@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://fight.lviv.ua/sitemap-index.xml

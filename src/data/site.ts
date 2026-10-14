@@ -1,5 +1,4 @@
 export const SITE = {
-  url: 'https://fight.lviv.ua',
   name: 'Fight Lions',
   fullName: 'Fight Lions — Львівська Обласна Федерація Рукопашного бою',
   orgName: 'Львівська Обласна Федерація Рукопашного бою',
