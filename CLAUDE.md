@@ -47,3 +47,6 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
   - Local SEO: NAP (name, address, phone) identical everywhere and in JSON-LD; `tel:` links.
 - Before finishing any task: `bun run verify`, then check the page at 360px and 1440px in a browser.
 - Lighthouse runs are deferred (to be set up later); still build to the targets above.
+
+## Git
+- Never commit unless explicitly asked to. No `Co-Authored-By` or other attribution lines in commits or PRs.
