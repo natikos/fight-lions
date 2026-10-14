@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logos/logo-fight-lions.png';
 import { MESSENGERS, SITE, SOCIALS } from '../data/site';
 import Button from './Button.astro';
+import OrbitRings from './OrbitRings.astro';
 import SocialLink from './SocialLink.astro';
 ---
 
@@ -11,10 +12,7 @@ import SocialLink from './SocialLink.astro';
     <p class="eyebrow">05 / ЗАПИС І КОНТАКТИ</p>
 
     <div class="emblem" aria-hidden="true">
-      <i class="emblem__glow"></i>
-      <i class="emblem__ring emblem__ring--outer"></i>
-      <i class="emblem__ring emblem__ring--arc"></i>
-      <i class="emblem__ring emblem__ring--inner"></i>
+      <OrbitRings />
       <Image src={logo} alt="" width={340} height={340} densities={[1, 2]} loading="lazy" />
     </div>
 
@@ -57,7 +55,7 @@ import SocialLink from './SocialLink.astro';
 
   .inner {
     position: relative;
-    padding-block: 48px 56px;
+    padding-block: var(--section-space);
   }
 
   .eyebrow {
@@ -84,36 +82,6 @@ import SocialLink from './SocialLink.astro';
     height: auto;
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 24px 30px rgb(0 0 0 / 60%));
-  }
-
-  .emblem i {
-    position: absolute;
-    border-radius: 50%;
-  }
-
-  .emblem__glow {
-    inset: 8%;
-    background: radial-gradient(closest-side, rgb(60 111 182 / 55%), rgb(60 111 182 / 0%) 72%);
-    animation: glow 5s ease-in-out infinite;
-  }
-
-  .emblem__ring--outer {
-    inset: 0;
-    border: 1px dashed rgb(237 232 223 / 28%);
-    animation: spin 50s linear infinite;
-  }
-
-  .emblem__ring--arc {
-    inset: 11%;
-    border: 2px solid transparent;
-    border-top-color: var(--yellow);
-    border-right-color: rgb(227 183 46 / 35%);
-    animation: spin 22s linear infinite reverse;
-  }
-
-  .emblem__ring--inner {
-    inset: 21%;
-    border: 1px solid rgb(60 111 182 / 60%);
   }
 
   .title {
@@ -176,30 +144,7 @@ import SocialLink from './SocialLink.astro';
     }
   }
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes glow {
-    0%,
-    100% {
-      opacity: 0.55;
-      transform: scale(1);
-    }
-
-    50% {
-      opacity: 1;
-      transform: scale(1.08);
-    }
-  }
-
   @media (min-width: 700px) {
-    .inner {
-      padding-block: 80px 96px;
-    }
-
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -228,10 +173,6 @@ import SocialLink from './SocialLink.astro';
   }
 
   @media (min-width: 900px) {
-    .inner {
-      padding-block: 104px 120px;
-    }
-
     .emblem {
       position: absolute;
       top: 60px;

@@ -17,7 +17,6 @@ import CtaArrow from './CtaArrow.astro';
   </div>
   <div class="hero__shade" aria-hidden="true"></div>
   <i class="gl gl--left" aria-hidden="true"></i>
-  <i class="gl gl--center" aria-hidden="true"></i>
   <i class="gl gl--right" aria-hidden="true"></i>
 
   <div class="container hero__inner">
@@ -112,6 +111,16 @@ import CtaArrow from './CtaArrow.astro';
     }
   }
 
+  @keyframes scan {
+    from {
+      top: -180px;
+    }
+
+    to {
+      top: 100%;
+    }
+  }
+
   @keyframes lift {
     from {
       transform: translateY(22px);
@@ -140,16 +149,27 @@ import CtaArrow from './CtaArrow.astro';
       position: absolute;
       inset-block: 0;
       display: block;
-      width: 1px;
-      background: rgb(237 232 223 / 7%);
+      width: 3px;
+      background: rgb(237 232 223 / 8%);
+    }
+
+    .gl::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 180px;
+      background: linear-gradient(180deg, transparent, var(--yellow), transparent);
+      opacity: 0.8;
+      animation: scan 9s ease-in-out infinite;
+    }
+
+    .gl--right::after {
+      animation-delay: -4.5s;
     }
 
     .gl--left {
       left: var(--gutter);
-    }
-
-    .gl--center {
-      left: calc(50% - 1px);
     }
 
     .gl--right {

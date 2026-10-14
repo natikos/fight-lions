@@ -34,7 +34,7 @@
   /* Layout: min supported viewport is 360px */
   --container-max: 1440px;
   --gutter: clamp(16px, 4vw, 56px);
-  --section-space: clamp(56px, 9vw, 120px);
+  --section-space: clamp(44px, 7vw, 88px);
 
   /* Shape: straight corners everywhere */
   --radius: 0;

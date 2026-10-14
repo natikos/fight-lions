@@ -114,7 +114,7 @@ import SectionHeading from './SectionHeading.astro';
     display: grid;
     gap: 32px;
     margin-top: -40px;
-    padding-block: 40px calc(var(--section-space) * 0.8);
+    padding-block: 40px var(--section-space);
   }
 
   .text {
@@ -233,7 +233,7 @@ import SectionHeading from './SectionHeading.astro';
 
     .wrap {
       margin-top: -40px;
-      padding-top: 72px;
+      padding-top: calc(var(--section-space) - 40px);
     }
   }
 

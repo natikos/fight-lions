@@ -1,0 +1,67 @@
+---
+// Decorative glow + slowly rotating rings. Fills its positioned parent.
+---
+
+<div class="orbit" aria-hidden="true">
+  <i class="orbit__glow"></i>
+  <i class="orbit__ring orbit__ring--outer"></i>
+  <i class="orbit__ring orbit__ring--arc"></i>
+  <i class="orbit__ring orbit__ring--inner"></i>
+</div>
+
+<style>
+  .orbit {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .orbit i {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .orbit__glow {
+    inset: 8%;
+    background: radial-gradient(closest-side, rgb(60 111 182 / 55%), rgb(60 111 182 / 0%) 72%);
+    animation: glow 5s ease-in-out infinite;
+  }
+
+  .orbit__ring--outer {
+    inset: 0;
+    border: 1px dashed rgb(237 232 223 / 28%);
+    animation: spin 50s linear infinite;
+  }
+
+  .orbit__ring--arc {
+    inset: 11%;
+    border: 2px solid transparent;
+    border-top-color: var(--yellow);
+    border-right-color: rgb(227 183 46 / 35%);
+    animation: spin 22s linear infinite reverse;
+  }
+
+  .orbit__ring--inner {
+    inset: 21%;
+    border: 1px solid rgb(60 111 182 / 60%);
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+</style>

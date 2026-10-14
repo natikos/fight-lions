@@ -11,7 +11,7 @@ interface Props {
 const { coach, featured = false } = Astro.props;
 ---
 
-<li class:list={['coach', { 'coach--featured': featured }]}>
+<li class:list={['coach', 'reveal', { 'coach--featured': featured }]}>
   <div class="coach__photo">
     {coach.photo ? (
       <Image

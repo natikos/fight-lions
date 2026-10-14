@@ -9,7 +9,7 @@ interface Props {
 const { eyebrow, id, size = 'md' } = Astro.props;
 ---
 
-<div class="heading">
+<div class="heading reveal">
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   <h2 {id} class:list={['display', 'title', `title--${size}`]}>
     <slot />
