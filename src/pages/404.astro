@@ -1,37 +1,122 @@
 ---
 import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import OrbitRings from '../components/OrbitRings.astro';
+import Rule from '../components/Rule.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Сторінку не знайдено | Fight Lions" noindex>
-  <section class="container nf">
-    <p class="code display">404</p>
-    <h1 class="display">Сторінку не знайдено</h1>
-    <p>Можливо, посилання застаріло. Поверніться на головну — там розклад і контакти.</p>
-    <Button href="/">На головну</Button>
+  <section class="nf">
+    <div class="nf__orbit">
+      <OrbitRings />
+    </div>
+
+    <div class="container nf__inner">
+      <div class="nf__copy">
+        <Eyebrow text="404 / ПРОМАХ" />
+        <p class="nf__code" aria-hidden="true">
+          404
+        </p>
+        <h1 class="nf__title">Сторінку не знайдено</h1>
+        <Rule />
+        <p class="nf__text">
+          Схоже, суперник ухилився: такої сторінки на сайті немає. Поверніться на головну — там
+          розклад, тренери й контакти.
+        </p>
+        <div class="nf__actions">
+          <Button href="/" size="lg">
+            На головну
+          </Button>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
   .nf {
-    display: grid;
-    justify-items: start;
-    gap: var(--space-5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+    overflow: hidden;
     padding-block: var(--section-space);
   }
 
-  .code {
-    color: var(--yellow);
-    font-size: var(--fs-error-code);
-    line-height: 0.9;
+  /* Decorative rings behind the code, bleeding off the left edge. */
+  .nf__orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(620px, 95vw);
+    aspect-ratio: 1;
+    opacity: 0.35;
+    transform: translate(-50%, -50%);
   }
 
-  h1 {
+  .nf__inner {
+    position: relative;
+    width: 100%;
+  }
+
+  .nf__copy {
+    max-width: var(--measure-2xl);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .nf__code {
+    color: var(--yellow);
+    font: 700 var(--fs-error-code) / 0.85 var(--font-display);
+    letter-spacing: -0.02em;
+    background: var(--gradient-yellow);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flicker 6s var(--ease) infinite;
+  }
+
+  .nf__title {
+    margin-top: var(--space-3);
     font-size: var(--fs-page-title);
   }
 
-  p:not(.code) {
-    max-width: var(--measure-md);
+  .nf__text {
+    max-width: var(--measure-lg);
+    margin-inline: auto;
+    margin-top: var(--space-5);
     color: var(--text-secondary);
+    font-size: var(--fs-lead);
+  }
+
+  .nf__actions {
+    margin-top: var(--space-11);
+  }
+
+  /* The gradient rule reads as a centred divider here. */
+  .nf :global(.rule) {
+    width: min(100%, var(--measure-md));
+    margin-inline: auto;
+    background: linear-gradient(90deg, transparent, var(--yellow), var(--blue), transparent);
+  }
+
+  @keyframes flicker {
+    0%,
+    88%,
+    100% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 0.45;
+    }
+
+    92% {
+      opacity: 1;
+    }
+
+    94% {
+      opacity: 0.6;
+    }
   }
 </style>

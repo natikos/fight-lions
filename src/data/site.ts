@@ -44,10 +44,10 @@ export const SOCIALS: Social[] = [
 ];
 
 export const NAV = [
-  { href: '#about', label: 'Напрямки' },
-  { href: '#why', label: 'Переваги' },
-  { href: '#grading', label: 'Градація' },
-  { href: '#coaches', label: 'Тренери' },
-  { href: '#training', label: 'Розклад' },
-  { href: '#contacts', label: 'Контакти' },
+  { href: '/#about', label: 'Напрямки' },
+  { href: '/#why', label: 'Переваги' },
+  { href: '/#grading', label: 'Градація' },
+  { href: '/#coaches', label: 'Тренери' },
+  { href: '/#training', label: 'Розклад' },
+  { href: '/#contacts', label: 'Контакти' },
 ] as const;
