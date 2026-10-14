@@ -1,4 +1,5 @@
 import mykhalchuk from '../assets/images/coach-mykhalchuk.png';
+import kulikov from '../assets/images/coach-kulikov.jpg';
 import venchur from '../assets/images/coach-venchur.jpg';
 
 export interface Coach {
@@ -10,7 +11,7 @@ export interface Coach {
   position?: string;
 }
 
-// TODO: add a real photo for coach 3 and confirm ranks with the client.
+// TODO: confirm coach ranks with the client.
 export const COACHES: Coach[] = [
   {
     name: 'Олександр Михальчук',
@@ -29,6 +30,8 @@ export const COACHES: Coach[] = [
   {
     name: 'Олександр Куліков-Глуговський',
     role: 'Тренер · помаранчевий пояс',
-    alt: 'Фото тренера Олександра Куліков-Глуговського буде додано',
+    photo: kulikov,
+    alt: 'Олександр Куліков-Глуговський — тренер федерації рукопашного бою у Львові, у кімоно з помаранчевим поясом',
+    position: '50% 12%',
   },
 ];
