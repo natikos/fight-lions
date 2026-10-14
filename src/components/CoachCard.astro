@@ -28,11 +28,19 @@ const { coach, featured = false } = Astro.props;
   </div>
   <h3 class="display coach__name">{coach.name}</h3>
   <p class="coach__role">{coach.role}</p>
+  {coach.bio && <p class="coach__bio">{coach.bio}</p>}
 </li>
 
 <style>
+  /* Rows (photo, name, role, bio) align across cards via subgrid. */
   .coach {
-    padding-top: 16px;
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    align-content: start;
+    row-gap: 0;
+    margin-bottom: var(--space-7);
+    padding-top: var(--space-4);
     border-top: 1px solid var(--line);
   }
 
@@ -45,7 +53,11 @@ const { coach, featured = false } = Astro.props;
     overflow: hidden;
     aspect-ratio: 4 / 3.6;
     border: 1px solid var(--line-photo);
-    background: repeating-linear-gradient(135deg, #242a30 0 14px, #1e2327 14px 28px);
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bg-stripe-a) 0 14px,
+      var(--bg-stripe-b) 14px 28px
+    );
   }
 
   .coach__photo :global(img:not(.coach__stub)) {
@@ -70,17 +82,24 @@ const { coach, featured = false } = Astro.props;
   }
 
   .coach__name {
-    margin-top: 20px;
-    font-size: clamp(32px, 7vw, 40px);
+    margin-top: var(--space-5);
+    font-size: var(--fs-coach-name);
     line-height: 1;
     text-wrap: balance;
   }
 
   .coach__role {
-    margin-top: 10px;
+    margin-top: var(--space-3);
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: var(--fs-md);
     letter-spacing: 0.02em;
+  }
+
+  .coach__bio {
+    margin-top: var(--space-3);
+    max-width: 44ch;
+    line-height: 1.5;
+    text-wrap: pretty;
   }
 
   @media (min-width: 700px) {

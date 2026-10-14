@@ -7,9 +7,13 @@ import SectionHeading from './SectionHeading.astro';
 
 <Section id="coaches" labelledby="coaches-title">
   <div class="container wrap">
-    <SectionHeading id="coaches-title" eyebrow="03 / ТРЕНЕРИ">
+    <SectionHeading id="coaches-title" eyebrow="04 / ТРЕНЕРИ">
       Наші тренери
     </SectionHeading>
+    <p class="intro">
+      Наші тренери самі виросли у федерації й пройшли той самий шлях від білого пояса, яким зараз
+      ідуть учні. Тому вони знають, як це — починати з нуля, і ведуть вас крок за кроком.
+    </p>
     <ul class="grid">
       {COACHES.map((coach, i) => (
         <CoachCard {coach} featured={i === 0} />
@@ -23,10 +27,19 @@ import SectionHeading from './SectionHeading.astro';
     padding-block: var(--section-space);
   }
 
+  .intro {
+    max-width: var(--measure-2xl);
+    margin-top: var(--space-3);
+    color: var(--text-secondary);
+    font-size: var(--fs-intro);
+    line-height: 1.65;
+    text-wrap: balance;
+  }
+
   .grid {
     display: grid;
-    gap: 28px;
-    margin: 32px 0 0;
+    column-gap: var(--space-7);
+    margin: var(--space-8) 0 0;
     padding: 0;
     list-style: none;
   }
