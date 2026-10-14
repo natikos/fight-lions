@@ -1,5 +1,5 @@
 import mykhalchuk from '../assets/images/coach-mykhalchuk.png';
-import placeholder2 from '../assets/images/coach-placeholder-2.jpg';
+import venchur from '../assets/images/coach-venchur.jpg';
 
 export interface Coach {
   name: string;
@@ -10,7 +10,7 @@ export interface Coach {
   position?: string;
 }
 
-// TODO: replace stock photos (coaches 2 and 3) with real ones and confirm ranks with the client.
+// TODO: add a real photo for coach 3 and confirm ranks with the client.
 export const COACHES: Coach[] = [
   {
     name: 'Олександр Михальчук',
@@ -22,9 +22,9 @@ export const COACHES: Coach[] = [
   {
     name: 'Анастасія Венчур',
     role: 'Тренерка · 1 дан',
-    photo: placeholder2,
-    alt: 'Анастасія Венчур — тренерка федерації рукопашного бою у Львові',
-    position: '50% 22%',
+    photo: venchur,
+    alt: 'Анастасія Венчур — тренерка федерації рукопашного бою у Львові, у кімоно з чорним поясом',
+    position: '50% 15%',
   },
   {
     name: 'Олександр Куліков-Глуговський',
