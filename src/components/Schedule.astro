@@ -13,99 +13,93 @@ const groupKeys = Object.keys(GROUPS) as Group[];
 ---
 
 <Section id="training" variant="panel" labelledby="training-title">
-  <div class="container wrap">
-    <div class="head">
-      <SectionHeading id="training-title" eyebrow="05 / ТРЕНУВАННЯ" size="lg">
-        Розклад по залах
-      </SectionHeading>
-      <Button href={`tel:${SITE.phone.href}`} class="head__btn">
-        Записатися: {SITE.phone.display}
-      </Button>
-    </div>
+  <div class="head">
+    <SectionHeading id="training-title" eyebrow="05 / ТРЕНУВАННЯ" size="lg">
+      Розклад по залах
+    </SectionHeading>
+    <Button href={`tel:${SITE.phone.href}`} class="head__btn">
+      Записатися: {SITE.phone.display}
+    </Button>
+  </div>
 
-    <ul class="legend">
-      {groupKeys.map((g) => (
-        <li class="legend__item" data-group={g}>
-          {GROUPS[g]} група
-        </li>
-      ))}
-    </ul>
-
-    <!-- Compact list: phones and tablets -->
-    <ol class="list">
-      {HALLS.map((hall, i) => (
-        <li class="list__hall">
-          <HallTitle num={num(i)} title={hallAddress(hall)} note={hall.venue} />
-          {hall.blocks.map((block) => (
-            <div class="list__block">
-              <p class="chip">{dayLabel(block.days)}</p>
-              {block.slots.map((slot) => (
-                <ScheduleSlot {...slot} />
-              ))}
-            </div>
-          ))}
-        </li>
-      ))}
-      <li class="list__hall">
-        <HallTitle num="VS" title={SPARRING.title} note={SPARRING.note} />
-        <div class="list__block">
-          <p class="chip">{DAYS[SPARRING.day]}</p>
-          <ScheduleSlot time={SPARRING.time} label={SPARRING.label} />
-        </div>
+  <ul class="legend">
+    {groupKeys.map((g) => (
+      <li class="legend__item" data-group={g}>
+        {GROUPS[g]} група
       </li>
-    </ol>
+    ))}
+  </ul>
 
-    <!-- Weekly grid: desktop -->
-    <table class="grid">
-      <caption class="sr-only">Розклад тренувань по залах і днях тижня</caption>
-      <thead>
-        <tr>
-          <td></td>
-          {DAYS.map((d, i) => (
-            <th scope="col" class:list={{ sat: i === 5 }}>
-              {d.toUpperCase()}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {HALLS.map((hall, i) => (
-          <tr>
-            <th scope="row">
-              <HallTitle num={num(i)} title={hallAddress(hall)} note={hall.venue} />
-            </th>
-            {DAYS.map((_, day) => {
-              const block = hall.blocks.find((b) => b.days.includes(day));
-              return (
-                <td>
-                  {block?.slots.map((slot) => (
-                    <ScheduleSlot {...slot} />
-                  ))}
-                </td>
-              );
-            })}
-          </tr>
+  <!-- Compact list: phones and tablets -->
+  <ol class="list">
+    {HALLS.map((hall, i) => (
+      <li class="list__hall">
+        <HallTitle num={num(i)} title={hallAddress(hall)} note={hall.venue} />
+        {hall.blocks.map((block) => (
+          <div class="list__block">
+            <p class="chip">{dayLabel(block.days)}</p>
+            {block.slots.map((slot) => (
+              <ScheduleSlot {...slot} />
+            ))}
+          </div>
         ))}
-        <tr class="sparring">
+      </li>
+    ))}
+    <li class="list__hall">
+      <HallTitle num="VS" title={SPARRING.title} note={SPARRING.note} />
+      <div class="list__block">
+        <p class="chip">{DAYS[SPARRING.day]}</p>
+        <ScheduleSlot time={SPARRING.time} label={SPARRING.label} />
+      </div>
+    </li>
+  </ol>
+
+  <!-- Weekly grid: desktop -->
+  <table class="grid">
+    <caption class="sr-only">Розклад тренувань по залах і днях тижня</caption>
+    <thead>
+      <tr>
+        <td></td>
+        {DAYS.map((d, i) => (
+          <th scope="col" class:list={{ sat: i === 5 }}>
+            {d.toUpperCase()}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {HALLS.map((hall, i) => (
+        <tr>
           <th scope="row">
-            <HallTitle num="VS" title={SPARRING.title} note={SPARRING.note} />
+            <HallTitle num={num(i)} title={hallAddress(hall)} note={hall.venue} />
           </th>
           {DAYS.map((_, day) => (
-            <td class:list={{ sparring__cell: day === SPARRING.day }}>
-              {day === SPARRING.day && <ScheduleSlot time={SPARRING.time} label={SPARRING.label} />}
+            <td>
+              {hall.blocks
+                .filter((b) => b.days.includes(day))
+                .flatMap((b) => b.slots)
+                .map((slot) => (
+                  <ScheduleSlot {...slot} />
+                ))}
             </td>
           ))}
         </tr>
-      </tbody>
-    </table>
-  </div>
+      ))}
+      <tr class="sparring">
+        <th scope="row">
+          <HallTitle num="VS" title={SPARRING.title} note={SPARRING.note} />
+        </th>
+        {DAYS.map((_, day) => (
+          <td class:list={{ sparring__cell: day === SPARRING.day }}>
+            {day === SPARRING.day && <ScheduleSlot time={SPARRING.time} label={SPARRING.label} />}
+          </td>
+        ))}
+      </tr>
+    </tbody>
+  </table>
 </Section>
 
 <style>
-  .wrap {
-    padding-block: var(--section-space);
-  }
-
   .head {
     display: flex;
     flex-direction: column;
@@ -132,7 +126,7 @@ const groupKeys = Object.keys(GROUPS) as Group[];
     align-items: center;
     gap: var(--space-2);
     color: var(--text-secondary);
-    font: 500 12px var(--font-mono);
+    font: 500 var(--fs-12) var(--font-mono);
   }
 
   .legend__item::before {
@@ -181,7 +175,7 @@ const groupKeys = Object.keys(GROUPS) as Group[];
     padding: var(--space-1) var(--space-2);
     background: var(--yellow);
     color: var(--bg-section);
-    font: 500 12px var(--font-mono);
+    font: 500 var(--fs-12) var(--font-mono);
     letter-spacing: 0.06em;
   }
 
@@ -233,7 +227,7 @@ const groupKeys = Object.keys(GROUPS) as Group[];
     .grid th[scope='col'] {
       padding: var(--space-3) var(--space-3) var(--space-3);
       color: var(--text-muted);
-      font: 500 12px var(--font-mono);
+      font: 500 var(--fs-12) var(--font-mono);
       letter-spacing: 0.14em;
       text-align: left;
     }

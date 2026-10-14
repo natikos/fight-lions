@@ -24,7 +24,11 @@ export interface Social {
 
 export const MESSENGERS: Social[] = [
   { id: 'telegram', label: 'Telegram', href: 'https://t.me/Rykopashka' },
-  { id: 'viber', label: 'Viber', href: `viber://chat?number=${SITE.phone.href}` },
+  {
+    id: 'viber',
+    label: 'Viber',
+    href: `viber://chat?number=${encodeURIComponent(SITE.phone.href)}`,
+  },
 ];
 
 export const SOCIALS: Social[] = [
@@ -41,6 +45,7 @@ export const SOCIALS: Social[] = [
 
 export const NAV = [
   { href: '#about', label: 'Напрямки' },
+  { href: '#why', label: 'Переваги' },
   { href: '#grading', label: 'Градація' },
   { href: '#coaches', label: 'Тренери' },
   { href: '#training', label: 'Розклад' },

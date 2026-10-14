@@ -26,18 +26,18 @@ const { num, title, note } = Astro.props;
   .hall__num {
     min-width: 28px;
     color: var(--yellow);
-    font: 500 14px var(--font-mono);
+    font: 500 var(--fs-14) var(--font-mono);
     line-height: 1.7;
   }
 
   .hall__title {
-    font: 600 17px/1.25 var(--font-body);
+    font: 600 var(--fs-17)/1.25 var(--font-body);
   }
 
   .hall__note {
     margin-top: var(--space-1);
     color: var(--text-muted);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-13);
   }
 
   @media (min-width: 1100px) {
@@ -50,7 +50,7 @@ const { num, title, note } = Astro.props;
       background: linear-gradient(180deg, var(--line-hall), transparent);
       background-clip: text;
       color: transparent;
-      font: 700 36px/1 var(--font-display);
+      font: 700 var(--fs-36)/1 var(--font-display);
     }
   }
 </style>

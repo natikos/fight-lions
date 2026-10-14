@@ -3,39 +3,25 @@ import { BENEFITS, BENEFITS_INTRO } from '../data/benefits';
 import BenefitCard from './BenefitCard.astro';
 import Section from './Section.astro';
 import SectionHeading from './SectionHeading.astro';
+import SectionIntro from './SectionIntro.astro';
 ---
 
 <Section id="why" labelledby="why-title">
-  <div class="container wrap">
-    <SectionHeading id="why-title" eyebrow="02 / ПЕРЕВАГИ">
-      Що ви отримуєте у Fight Lions
-    </SectionHeading>
-    <p class="intro">{BENEFITS_INTRO}</p>
-    <ul class="grid">
-      {BENEFITS.map((b) => (
-        <BenefitCard {...b} />
-      ))}
-    </ul>
-  </div>
+  <SectionHeading id="why-title" eyebrow="02 / ПЕРЕВАГИ">
+    Що ви отримуєте у Fight Lions
+  </SectionHeading>
+  <SectionIntro>{BENEFITS_INTRO}</SectionIntro>
+  <ul class="grid">
+    {BENEFITS.map((b) => (
+      <BenefitCard {...b} />
+    ))}
+  </ul>
 </Section>
 
 <style>
-  .wrap {
-    padding-block: var(--section-space);
-  }
-
-  .intro {
-    max-width: var(--measure-2xl);
-    margin-top: var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--fs-intro);
-    line-height: 1.65;
-    text-wrap: balance;
-  }
-
   .grid {
     display: grid;
-    gap: var(--space-4) var(--space-9);
+    gap: var(--space-4) var(--space-10);
     margin: var(--space-7) 0 0;
     padding: 0;
     list-style: none;

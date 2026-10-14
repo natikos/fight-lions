@@ -1,4 +1,6 @@
 ---
+import Eyebrow from './Eyebrow.astro';
+
 interface Props {
   /** Section number and name, e.g. "01 / НАПРЯМКИ". */
   eyebrow?: string;
@@ -10,20 +12,13 @@ const { eyebrow, id, size = 'md' } = Astro.props;
 ---
 
 <div class="heading reveal">
-  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  {eyebrow && <Eyebrow text={eyebrow} />}
   <h2 {id} class:list={['display', 'title', `title--${size}`]}>
     <slot />
   </h2>
 </div>
 
 <style>
-  .eyebrow {
-    margin-bottom: var(--space-4);
-    color: var(--yellow);
-    font: 500 13px var(--font-mono);
-    letter-spacing: 0.08em;
-  }
-
   .title {
     font-size: var(--fs-heading);
     line-height: 1;

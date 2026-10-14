@@ -7,7 +7,7 @@ import Section from './Section.astro';
 import SectionHeading from './SectionHeading.astro';
 ---
 
-<Section id="grading" variant="panel" labelledby="grading-title">
+<Section id="grading" variant="panel" labelledby="grading-title" contained={false}>
   <div class="photo">
     <Image
       src={ceremony}
@@ -26,21 +26,29 @@ import SectionHeading from './SectionHeading.astro';
         Від білого до чорного пояса
       </SectionHeading>
       <p>
-        Кожні півроку в клубі проходить атестація: учні складають іспит на наступний пояс або
-        підтверджують поточний. Це не формальність, а чесна перевірка того, чого тренування навчили.
+        Шлях від білого до чорного пояса поділений на кю — ступені, кожен зі своїми вимогами. Щоб
+        перейти на наступний, учень складає атестацію: це не формальність, а чесна перевірка того,
+        чого навчили тренування.
       </p>
       <ul class="checks">
         <li>
-          <strong>Фізична підготовка</strong> сила, витривалість, швидкість
+          <strong>Фізична підготовка:</strong>
+          <span>сила, витривалість, швидкість</span>
         </li>
         <li>
-          <strong>Гнучкість</strong> рухливість і контроль тіла
+          <strong>Гнучкість:</strong>
+          <span>рухливість і контроль тіла</span>
         </li>
         <li>
-          <strong>Техніки</strong> удари, кидки, больові, захист
+          <strong>Техніки:</strong>
+          <span>удари, кидки, больові, захист</span>
         </li>
       </ul>
-      <p>Кожен рівень має свої вимоги, а з кожним новим поясом техніки стають складнішими.</p>
+      <p>
+        З кожним новим поясом техніки стають складнішими. Після коричневого пояса рахунок іде вже не
+        на кю, а на дани — майстерські ступені чорного пояса.
+      </p>
+      <p class="note">Графік атестацій уточнюйте у тренера.</p>
     </div>
 
     <div class="table" role="table" aria-label="Система поясів">
@@ -74,7 +82,7 @@ import SectionHeading from './SectionHeading.astro';
           <span class="name">{BLACK_BELT.name}</span>
           <span class="kyu">дани</span>
         </div>
-        <div class="cell cell--wide" role="cell">
+        <div class="cell cell--wide" role="cell" aria-colspan="2">
           <Belt color="black" />
         </div>
       </div>
@@ -112,16 +120,18 @@ import SectionHeading from './SectionHeading.astro';
     position: absolute;
     inset: auto 0 56px;
     color: var(--text);
-    font: 500 11px var(--font-mono);
+    font: 500 var(--fs-11) var(--font-mono);
     letter-spacing: 0.14em;
   }
 
   .wrap {
+    /* How far the panel rides up over the photo. */
+    --overlap: var(--space-10);
     position: relative;
     display: grid;
     gap: var(--space-8);
-    margin-top: -40px;
-    padding-block: var(--space-9) var(--section-space);
+    margin-top: calc(-1 * var(--overlap));
+    padding-block: var(--space-10) var(--section-space);
   }
 
   .text {
@@ -133,9 +143,9 @@ import SectionHeading from './SectionHeading.astro';
     margin-bottom: var(--space-1);
   }
 
-  .text p:not(.eyebrow) {
+  .text p {
     color: var(--text-secondary);
-    font-size: var(--fs-base);
+    font-size: var(--fs-16);
     line-height: 1.6;
   }
 
@@ -174,7 +184,7 @@ import SectionHeading from './SectionHeading.astro';
 
   .col-title {
     color: var(--text-muted);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-12);
     letter-spacing: 0.06em;
   }
 
@@ -188,7 +198,7 @@ import SectionHeading from './SectionHeading.astro';
     display: block;
     margin-top: var(--space-1);
     color: var(--yellow);
-    font-size: var(--fs-2xs);
+    font-size: var(--fs-11);
   }
 
   .row--black .name {
@@ -220,6 +230,11 @@ import SectionHeading from './SectionHeading.astro';
     font-weight: 600;
   }
 
+  .text p.note {
+    color: var(--text-muted);
+    font-size: var(--fs-14);
+  }
+
   @media (min-width: 768px) {
     .photo {
       height: 360px;
@@ -247,7 +262,7 @@ import SectionHeading from './SectionHeading.astro';
       grid-column: 1;
       grid-row: 1;
       margin: 0;
-      font-size: var(--fs-xs);
+      font-size: var(--fs-12);
     }
 
     .name {
@@ -256,8 +271,8 @@ import SectionHeading from './SectionHeading.astro';
     }
 
     .wrap {
-      margin-top: -40px;
-      padding-top: calc(var(--section-space) - 40px);
+      margin-top: calc(-1 * var(--overlap));
+      padding-top: calc(var(--section-space) - var(--overlap));
     }
   }
 
@@ -272,7 +287,7 @@ import SectionHeading from './SectionHeading.astro';
       align-content: start;
       align-self: start;
       position: sticky;
-      top: var(--space-9);
+      top: var(--space-10);
     }
 
     .table {

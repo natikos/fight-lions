@@ -6,30 +6,24 @@ import SectionHeading from './SectionHeading.astro';
 ---
 
 <Section id="about" variant="panel" labelledby="about-title">
-  <div class="container wrap">
-    <div class="intro">
-      <SectionHeading id="about-title" eyebrow="01 / НАПРЯМКИ">
-        Боротьба, удари, самооборона — в одній системі
-      </SectionHeading>
-      <p class="intro__text">
-        Без кіношних прийомів — лише те, що працює і на вулиці, і на змаганнях: за правилами та без
-        правил. Удари, кидки, боротьба в стійці й партері, затримання. Техніки відкриваються
-        поступово, за рівнем пояса.
-      </p>
-    </div>
-    <div class="grid">
-      {DIRECTIONS.map((d, i) => (
-        <DirectionCard index={i + 1} {...d} />
-      ))}
-    </div>
+  <div class="intro">
+    <SectionHeading id="about-title" eyebrow="01 / НАПРЯМКИ">
+      Боротьба, удари, самооборона — в одній системі
+    </SectionHeading>
+    <p class="intro__text">
+      Без кіношних прийомів — лише те, що працює і на вулиці, і на змаганнях: за правилами та без
+      правил. Удари, кидки, боротьба в стійці й партері, затримання. Техніки відкриваються
+      поступово, за рівнем пояса.
+    </p>
+  </div>
+  <div class="grid">
+    {DIRECTIONS.map((d, i) => (
+      <DirectionCard index={i + 1} {...d} />
+    ))}
   </div>
 </Section>
 
 <style>
-  .wrap {
-    padding-block: var(--section-space);
-  }
-
   .intro {
     display: grid;
     gap: var(--space-5);
@@ -43,7 +37,7 @@ import SectionHeading from './SectionHeading.astro';
   .intro__text {
     max-width: var(--measure-xl);
     color: var(--text-secondary);
-    font-size: var(--fs-base);
+    font-size: var(--fs-16);
     line-height: 1.6;
   }
 

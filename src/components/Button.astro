@@ -21,7 +21,7 @@ const { href, size = 'md', class: className } = Astro.props;
     padding: var(--space-4) var(--space-6);
     background: var(--gradient-yellow);
     color: var(--bg-section);
-    font: 600 15px/1.2 var(--font-body);
+    font: 600 var(--fs-15)/1.2 var(--font-body);
     text-align: center;
     text-decoration: none;
     transition: filter 0.2s;
@@ -39,7 +39,7 @@ const { href, size = 'md', class: className } = Astro.props;
 
   @media (min-width: 768px) {
     .btn--lg {
-      padding: var(--space-5) 36px;
+      padding: var(--space-5) var(--space-9);
     }
   }
 </style>

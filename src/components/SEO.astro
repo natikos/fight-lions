@@ -1,6 +1,37 @@
 ---
+import firaCyrillic700 from '@fontsource/fira-sans-extra-condensed/files/fira-sans-extra-condensed-cyrillic-700-normal.woff2?url';
 import { SITE, SOCIALS } from '../data/site';
 import { HALLS } from '../data/schedule';
+
+/** schema.org day names, indexed like `DAYS` in the schedule (0 = Monday). */
+const SCHEMA_DAYS = [
+  'https://schema.org/Monday',
+  'https://schema.org/Tuesday',
+  'https://schema.org/Wednesday',
+  'https://schema.org/Thursday',
+  'https://schema.org/Friday',
+  'https://schema.org/Saturday',
+];
+
+const postalAddress = (hall: (typeof HALLS)[number]) => ({
+  '@type': 'PostalAddress',
+  streetAddress: hall.street,
+  addressLocality: hall.locality,
+  addressRegion: 'Львівська область',
+  addressCountry: 'UA',
+});
+
+/** One entry per day a hall trains, from the first slot's start to the last slot's end. */
+const openingHours = (hall: (typeof HALLS)[number]) =>
+  hall.blocks.flatMap((block) => {
+    const times = block.slots.flatMap((slot) => slot.time.split('–'));
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: block.days.map((d) => SCHEMA_DAYS[d]),
+      opens: times[0],
+      closes: times[times.length - 1],
+    };
+  });
 
 interface Props {
   title?: string;
@@ -26,17 +57,16 @@ const structuredData = {
   sport: 'Рукопашний бій',
   description: SITE.description,
   telephone: SITE.phone.href,
-  areaServed: 'Львів',
+  address: postalAddress(HALLS[0]),
+  areaServed: { '@type': 'City', name: 'Львів' },
   sameAs: [...SOCIALS.flatMap((s) => (s.href ? [s.href] : [])), SITE.tournamentHub],
-  location: HALLS.map((hall) => ({
+  location: HALLS.map((hall, i) => ({
     '@type': 'SportsActivityLocation',
+    '@id': `${SITE.url}/#hall-${i + 1}`,
     name: hall.venue,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: hall.street,
-      addressLocality: hall.locality,
-      addressCountry: 'UA',
-    },
+    telephone: SITE.phone.href,
+    address: postalAddress(hall),
+    openingHoursSpecification: openingHours(hall),
   })),
 };
 ---
@@ -48,6 +78,9 @@ const structuredData = {
 <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
 <meta name="theme-color" content="#131517" />
 <link rel="canonical" href={canonical} />
+
+<!-- Display font for the hero h1: without this it waits on the stylesheet. -->
+<link rel="preload" href={firaCyrillic700} as="font" type="font/woff2" crossorigin />
 
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />

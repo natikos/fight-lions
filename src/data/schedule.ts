@@ -70,7 +70,18 @@ export const HALLS: Hall[] = [
   },
 ];
 
-export const SPARRING = {
+export type DayIndex = 0 | 1 | 2 | 3 | 4 | 5;
+
+export interface Sparring {
+  title: string;
+  note: string;
+  day: DayIndex;
+  time: string;
+  /** Shown instead of a group name. */
+  label: string;
+}
+
+export const SPARRING: Sparring = {
   title: 'День спарингів',
   note: 'після ранкових груп',
   day: 5,

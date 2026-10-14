@@ -3,39 +3,25 @@ import { COACHES } from '../data/coaches';
 import CoachCard from './CoachCard.astro';
 import Section from './Section.astro';
 import SectionHeading from './SectionHeading.astro';
+import SectionIntro from './SectionIntro.astro';
 ---
 
 <Section id="coaches" labelledby="coaches-title">
-  <div class="container wrap">
-    <SectionHeading id="coaches-title" eyebrow="04 / ТРЕНЕРИ">
-      Наші тренери
-    </SectionHeading>
-    <p class="intro">
-      Наші тренери самі виросли у федерації й пройшли той самий шлях від білого пояса, яким зараз
-      ідуть учні. Тому вони знають, як це — починати з нуля, і ведуть вас крок за кроком.
-    </p>
-    <ul class="grid">
-      {COACHES.map((coach, i) => (
-        <CoachCard {coach} featured={i === 0} />
-      ))}
-    </ul>
-  </div>
+  <SectionHeading id="coaches-title" eyebrow="04 / ТРЕНЕРИ">
+    Наші тренери
+  </SectionHeading>
+  <SectionIntro>
+    Наші тренери самі виросли у федерації й пройшли той самий шлях від білого пояса, яким зараз
+    ідуть учні. Тому вони знають, як це — починати з нуля, і ведуть вас крок за кроком.
+  </SectionIntro>
+  <ul class="grid">
+    {COACHES.map((coach, i) => (
+      <CoachCard {coach} featured={i === 0} />
+    ))}
+  </ul>
 </Section>
 
 <style>
-  .wrap {
-    padding-block: var(--section-space);
-  }
-
-  .intro {
-    max-width: var(--measure-2xl);
-    margin-top: var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--fs-intro);
-    line-height: 1.65;
-    text-wrap: balance;
-  }
-
   .grid {
     display: grid;
     column-gap: var(--space-7);

@@ -34,10 +34,10 @@ const external = social.href?.startsWith('http');
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    min-width: 44px;
+    min-width: var(--touch-target);
     height: var(--size);
     color: var(--white);
-    font: 500 13px var(--font-mono);
+    font: 500 var(--fs-13) var(--font-mono);
     letter-spacing: 0.06em;
     text-decoration: none;
     transition: filter 0.2s;
@@ -52,8 +52,21 @@ const external = social.href?.startsWith('http');
     width: var(--size);
   }
 
+  /* Brand fills are too light for white text; a scrim takes every one past AA. */
   .social--label {
+    position: relative;
     padding-inline: var(--space-5);
+  }
+
+  .social--label::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--black) 22%, transparent);
+  }
+
+  .social--label > * {
+    position: relative;
   }
 
   .social--telegram {

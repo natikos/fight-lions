@@ -1,0 +1,19 @@
+---
+interface Props {
+  /** Section number and name, e.g. "01 / НАПРЯМКИ". */
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<p class="eyebrow">{text}</p>
+
+<style>
+  .eyebrow {
+    margin-bottom: var(--space-4);
+    color: var(--yellow);
+    font: 500 var(--fs-13) var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+</style>

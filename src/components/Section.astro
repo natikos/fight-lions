@@ -5,11 +5,13 @@ interface Props {
   id: string;
   /** `panel` = gradient background with yellow→blue separators above and below. */
   variant?: 'flat' | 'panel';
+  /** `false` when the section lays out its own full-bleed content (e.g. Grading). */
+  contained?: boolean;
   labelledby?: string;
   class?: string;
 }
 
-const { id, variant = 'flat', labelledby, class: className } = Astro.props;
+const { id, variant = 'flat', contained = true, labelledby, class: className } = Astro.props;
 ---
 
 <section
@@ -18,7 +20,13 @@ const { id, variant = 'flat', labelledby, class: className } = Astro.props;
   class:list={['section', `section--${variant}`, className]}
 >
   {variant === 'panel' && <Rule />}
-  <slot />
+  {contained ? (
+    <div class="container inner">
+      <slot />
+    </div>
+  ) : (
+    <slot />
+  )}
   {variant === 'panel' && <Rule />}
 </section>
 
@@ -29,5 +37,9 @@ const { id, variant = 'flat', labelledby, class: className } = Astro.props;
 
   .section--panel {
     background: var(--bg-panel-gradient);
+  }
+
+  .inner {
+    padding-block: var(--section-space);
   }
 </style>

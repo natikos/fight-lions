@@ -53,7 +53,8 @@ import SocialLink from './SocialLink.astro';
 </header>
 
 <script is:inline>
-  document.querySelector('.header').dataset.js = '';
+  const header = document.querySelector('.header');
+  if (header) header.dataset.js = '';
 </script>
 
 <script>
@@ -105,13 +106,13 @@ import SocialLink from './SocialLink.astro';
   }
 
   .brand__logo {
-    width: 44px;
-    height: 44px;
+    width: var(--touch-target);
+    height: var(--touch-target);
   }
 
   .brand__name {
     display: block;
-    font: 700 22px/1 var(--font-display);
+    font: 700 var(--fs-22)/1 var(--font-display);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
@@ -120,7 +121,7 @@ import SocialLink from './SocialLink.astro';
     display: none;
     margin-top: var(--space-1);
     color: var(--text-muted);
-    font: 400 12px var(--font-mono);
+    font: 400 var(--fs-12) var(--font-mono);
     letter-spacing: 0.04em;
   }
 
@@ -128,9 +129,9 @@ import SocialLink from './SocialLink.astro';
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
-    width: 44px;
-    height: 44px;
+    gap: var(--space-1);
+    width: var(--touch-target);
+    height: var(--touch-target);
     padding: 0 var(--space-3);
     border: 1px solid var(--line-control);
     background: none;
@@ -159,7 +160,7 @@ import SocialLink from './SocialLink.astro';
     padding: var(--space-3) 0;
     border-bottom: 2px solid transparent;
     color: var(--text);
-    font: 500 15px var(--font-body);
+    font: 500 var(--fs-15) var(--font-body);
     text-decoration: none;
     transition: border-color 0.2s;
   }
@@ -182,10 +183,10 @@ import SocialLink from './SocialLink.astro';
     flex: 1;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
+    min-height: var(--touch-target);
     background: var(--gradient-yellow);
     color: var(--bg-section);
-    font: 600 14px var(--font-body);
+    font: 600 var(--fs-14) var(--font-body);
     text-decoration: none;
   }
 
@@ -233,7 +234,7 @@ import SocialLink from './SocialLink.astro';
     }
 
     .brand__name {
-      font-size: var(--fs-xl);
+      font-size: var(--fs-24);
     }
 
     .brand__sub {
@@ -249,7 +250,7 @@ import SocialLink from './SocialLink.astro';
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      gap: 26px;
+      gap: var(--space-6);
       padding: 0;
       border: 0;
     }
@@ -266,10 +267,10 @@ import SocialLink from './SocialLink.astro';
     .contact__phone {
       flex: none;
       min-height: 0;
-      margin-right: 6px;
+      margin-right: var(--space-2);
       background: none;
       color: var(--text);
-      font-size: var(--fs-base);
+      font-size: var(--fs-16);
     }
 
     .contact__phone:hover {

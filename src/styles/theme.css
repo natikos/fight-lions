@@ -4,7 +4,6 @@
   /* Surfaces */
   --bg-base: #131517;
   --bg-section: #17191c;
-  --bg-panel: #1b1e22;
   --bg-panel-alt: #1a1e22;
   --bg-raised: linear-gradient(180deg, #252b31, #1a1e22);
 
@@ -52,17 +51,27 @@
   --space-6: 24px;
   --space-7: 28px;
   --space-8: 32px;
-  --space-9: 40px;
+  --space-9: 36px;
+  --space-10: 40px;
+  --space-11: 44px;
 
-  /* Type scale */
-  --fs-2xs: 11px;
-  --fs-xs: 12px;
-  --fs-sm: 13px;
-  --fs-md: 15px;
-  --fs-base: 16px;
-  --fs-lg: 19px;
-  --fs-xl: 24px;
-  --fs-2xl: 28px;
+  /* Minimum comfortable tap area. */
+  --touch-target: 44px;
+
+  /* Type scale: fixed steps, named by pixel size. */
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-19: 19px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-28: 28px;
+  --fs-36: 36px;
 
   /* Fluid type */
   --fs-intro: clamp(16px, 2vw, 17px);
@@ -84,9 +93,6 @@
   --measure-lg: 560px;
   --measure-xl: 640px;
   --measure-2xl: 820px;
-
-  /* Shape: straight corners everywhere */
-  --radius: 0;
 }
 
 :root {
@@ -114,14 +120,15 @@
   --brand-facebook: #1877f2;
   --brand-tiktok-cyan: #25f4ee;
   --brand-tiktok-red: #fe2c55;
-  --brand-instagram: linear-gradient(45deg, #f9a13a 0%, #e1306c 50%, #833ab4 100%);
+  /* Orange stop darkened from the brand #f9a13a so white label text clears WCAG AA. */
+  --brand-instagram: linear-gradient(45deg, #d18730 0%, #e1306c 50%, #833ab4 100%);
 
   /* Group colors in the schedule */
   --group-junior: var(--yellow);
   --group-middle: #5b8fd6;
   --group-senior: var(--text);
 
-  /* Belt colors */
+  /* Belt colors. Referenced dynamically as var(--belt-<color>) from Belt.astro. */
   --belt-white: #f2f0ea;
   --belt-purple: #7a4b9e;
   --belt-red: #c23b30;

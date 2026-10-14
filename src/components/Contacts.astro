@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logos/logo-fight-lions.png';
 import { MESSENGERS, SITE, SOCIALS } from '../data/site';
 import Button from './Button.astro';
+import Eyebrow from './Eyebrow.astro';
 import OrbitRings from './OrbitRings.astro';
 import SocialLink from './SocialLink.astro';
 ---
 
 <section id="contacts" class="contacts" aria-labelledby="contacts-title">
   <div class="container inner">
-    <p class="eyebrow">06 / ЗАПИС І КОНТАКТИ</p>
+    <Eyebrow text="06 / ЗАПИС І КОНТАКТИ" />
 
     <div class="emblem" aria-hidden="true">
       <OrbitRings />
@@ -58,13 +59,6 @@ import SocialLink from './SocialLink.astro';
     padding-block: var(--section-space);
   }
 
-  .eyebrow {
-    margin-bottom: var(--space-4);
-    color: var(--yellow);
-    font: 500 13px var(--font-mono);
-    letter-spacing: 0.08em;
-  }
-
   .emblem {
     position: relative;
     display: flex;
@@ -103,7 +97,7 @@ import SocialLink from './SocialLink.astro';
   .actions {
     display: grid;
     gap: var(--space-3);
-    margin-bottom: 36px;
+    margin-bottom: var(--space-9);
   }
 
   .actions__messengers {
@@ -119,7 +113,7 @@ import SocialLink from './SocialLink.astro';
   .socials__title {
     margin-bottom: var(--space-4);
     color: var(--text-muted);
-    font: 500 12px var(--font-mono);
+    font: 500 var(--fs-12) var(--font-mono);
     letter-spacing: 0.14em;
   }
 
@@ -150,7 +144,7 @@ import SocialLink from './SocialLink.astro';
       flex-wrap: wrap;
       align-items: center;
       gap: var(--space-4);
-      margin-bottom: 44px;
+      margin-bottom: var(--space-11);
     }
 
     .actions__messengers {
