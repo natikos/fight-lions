@@ -49,4 +49,5 @@ Goal: rank in search for "рукопашний бій Львів", give visitors
 - Lighthouse runs are deferred (to be set up later); still build to the targets above.
 
 ## Git
+
 - Never commit unless explicitly asked to. No `Co-Authored-By` or other attribution lines in commits or PRs.
