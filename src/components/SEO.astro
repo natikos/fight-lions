@@ -24,8 +24,7 @@ const structuredData = {
   logo: new URL('/icon-512.png', Astro.site).href,
   image: ogImage,
   sport: 'Рукопашний бій',
-  description:
-    'Секція рукопашного бою у Львові для дітей і дорослих. Тренування за системою поясів, перше пробне заняття безкоштовно.',
+  description: SITE.description,
   telephone: SITE.phone.href,
   areaServed: 'Львів',
   sameAs: [...SOCIALS.flatMap((s) => (s.href ? [s.href] : [])), SITE.tournamentHub],

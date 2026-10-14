@@ -7,7 +7,9 @@ import SectionHeading from './SectionHeading.astro';
 
 <Section id="why" labelledby="why-title">
   <div class="container wrap">
-    <SectionHeading id="why-title">Що ви отримуєте у Fight Lions</SectionHeading>
+    <SectionHeading id="why-title" eyebrow="02 / ПЕРЕВАГИ">
+      Що ви отримуєте у Fight Lions
+    </SectionHeading>
     <p class="intro">{BENEFITS_INTRO}</p>
     <ul class="grid">
       {BENEFITS.map((b) => (
@@ -22,34 +24,31 @@ import SectionHeading from './SectionHeading.astro';
     padding-block: var(--section-space);
   }
 
-  .wrap :global(.title) {
-    font-size: clamp(30px, 6vw, 40px);
-  }
-
   .intro {
-    max-width: 820px;
-    margin-top: 12px;
+    max-width: var(--measure-2xl);
+    margin-top: var(--space-3);
     color: var(--text-secondary);
-    font-size: clamp(16px, 2vw, 17px);
+    font-size: var(--fs-intro);
     line-height: 1.65;
+    text-wrap: balance;
   }
 
   .grid {
     display: grid;
-    gap: 16px 40px;
-    margin: 28px 0 0;
+    gap: var(--space-4) var(--space-9);
+    margin: var(--space-7) 0 0;
     padding: 0;
     list-style: none;
   }
 
   .grid :global(.benefit) {
-    padding-bottom: 8px;
+    padding-bottom: var(--space-2);
   }
 
   @media (min-width: 700px) {
     .grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      row-gap: 32px;
+      row-gap: var(--space-8);
     }
   }
 

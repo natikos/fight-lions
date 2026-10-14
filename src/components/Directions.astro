@@ -12,8 +12,9 @@ import SectionHeading from './SectionHeading.astro';
         Боротьба, удари, самооборона — в одній системі
       </SectionHeading>
       <p class="intro__text">
-        Удари, кидки, боротьба в стійці й партері, затримання та захист від зброї — без кіношних
-        прийомів. Техніки відкриваються поступово, за рівнем пояса.
+        Без кіношних прийомів — лише те, що працює і на вулиці, і на змаганнях: за правилами та без
+        правил. Удари, кидки, боротьба в стійці й партері, затримання. Техніки відкриваються
+        поступово, за рівнем пояса.
       </p>
     </div>
     <div class="grid">
@@ -30,34 +31,31 @@ import SectionHeading from './SectionHeading.astro';
   }
 
   .intro {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px 24px;
-    margin-bottom: 32px;
+    display: grid;
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
   }
 
   .intro :global(.title) {
-    max-width: 760px;
+    max-width: none;
   }
 
   .intro__text {
-    max-width: 400px;
+    max-width: var(--measure-xl);
     color: var(--text-secondary);
-    font-size: 16px;
+    font-size: var(--fs-base);
     line-height: 1.6;
   }
 
   .grid {
     display: grid;
-    gap: 16px;
+    gap: var(--space-4);
   }
 
   @media (min-width: 768px) {
     .grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: var(--space-5);
     }
 
     .grid > :global(:first-child) {

@@ -42,14 +42,14 @@ import { SITE } from '../data/site';
   .inner {
     display: grid;
     justify-items: start;
-    gap: 16px;
-    padding-block: 22px;
+    gap: var(--space-4);
+    padding-block: var(--space-6);
   }
 
   .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
   }
 
   .brand__name {
@@ -59,7 +59,7 @@ import { SITE } from '../data/site';
   }
 
   .results {
-    padding-block: 12px 2px;
+    padding-block: var(--space-3) 2px;
     border-bottom: 1px solid var(--yellow);
     color: var(--text-secondary);
     font: 500 12px/1.4 var(--font-mono);
@@ -81,7 +81,7 @@ import { SITE } from '../data/site';
       grid-template-columns: auto 1fr auto;
       align-items: center;
       justify-items: center;
-      gap: 16px 32px;
+      gap: var(--space-4) var(--space-8);
     }
 
     .copy {

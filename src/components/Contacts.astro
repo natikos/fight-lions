@@ -9,7 +9,7 @@ import SocialLink from './SocialLink.astro';
 
 <section id="contacts" class="contacts" aria-labelledby="contacts-title">
   <div class="container inner">
-    <p class="eyebrow">05 / ЗАПИС І КОНТАКТИ</p>
+    <p class="eyebrow">06 / ЗАПИС І КОНТАКТИ</p>
 
     <div class="emblem" aria-hidden="true">
       <OrbitRings />
@@ -59,7 +59,7 @@ import SocialLink from './SocialLink.astro';
   }
 
   .eyebrow {
-    margin-bottom: 16px;
+    margin-bottom: var(--space-4);
     color: var(--yellow);
     font: 500 13px var(--font-mono);
     letter-spacing: 0.08em;
@@ -72,7 +72,7 @@ import SocialLink from './SocialLink.astro';
     justify-content: center;
     width: min(220px, 56vw);
     aspect-ratio: 1;
-    margin: 16px 0 12px auto;
+    margin: var(--space-4) 0 var(--space-3) auto;
     pointer-events: none;
   }
 
@@ -81,35 +81,35 @@ import SocialLink from './SocialLink.astro';
     width: 52%;
     height: auto;
     animation: float 6s ease-in-out infinite;
-    filter: drop-shadow(0 24px 30px rgb(0 0 0 / 60%));
+    filter: drop-shadow(0 24px 30px color-mix(in srgb, var(--black) 60%, transparent));
   }
 
   .title {
     --outline-width: 1.5px;
-    margin-bottom: 24px;
-    font-size: clamp(3.2rem, 27px + 7.4vw, 8.25rem);
+    margin-bottom: var(--space-6);
+    font-size: var(--fs-contacts-title);
     line-height: 0.88;
   }
 
   .lead {
-    max-width: 560px;
-    margin-bottom: 28px;
-    padding-left: 18px;
+    max-width: var(--measure-lg);
+    margin-bottom: var(--space-7);
+    padding-left: var(--space-5);
     border-left: 2px solid var(--yellow);
-    font-size: clamp(16px, 2vw, 19px);
+    font-size: var(--fs-lead);
     line-height: 1.55;
   }
 
   .actions {
     display: grid;
-    gap: 12px;
+    gap: var(--space-3);
     margin-bottom: 36px;
   }
 
   .actions__messengers {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: var(--space-3);
   }
 
   .actions__messengers :global(.social) {
@@ -117,7 +117,7 @@ import SocialLink from './SocialLink.astro';
   }
 
   .socials__title {
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
     color: var(--text-muted);
     font: 500 12px var(--font-mono);
     letter-spacing: 0.14em;
@@ -126,7 +126,7 @@ import SocialLink from './SocialLink.astro';
   .socials {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: var(--space-3);
   }
 
   .socials :global(.social) {
@@ -149,13 +149,13 @@ import SocialLink from './SocialLink.astro';
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px;
+      gap: var(--space-4);
       margin-bottom: 44px;
     }
 
     .actions__messengers {
       display: flex;
-      gap: 16px;
+      gap: var(--space-4);
     }
 
     .actions__messengers :global(.social) {

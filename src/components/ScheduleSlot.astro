@@ -18,7 +18,7 @@ const { time, group, label } = Astro.props;
 
 <style>
   .slot {
-    padding-left: 10px;
+    padding-left: var(--space-3);
     border-left: 2px solid var(--group);
   }
 
@@ -44,6 +44,6 @@ const { time, group, label } = Astro.props;
     display: block;
     margin-top: 2px;
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: var(--fs-sm);
   }
 </style>

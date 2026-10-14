@@ -20,7 +20,7 @@ const { num, title, note } = Astro.props;
   .hall {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: var(--space-4);
   }
 
   .hall__num {
@@ -35,19 +35,19 @@ const { num, title, note } = Astro.props;
   }
 
   .hall__note {
-    margin-top: 4px;
+    margin-top: var(--space-1);
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: var(--fs-sm);
   }
 
   @media (min-width: 1100px) {
     .hall {
-      gap: 16px;
+      gap: var(--space-4);
     }
 
     .hall__num {
       min-width: 0;
-      background: linear-gradient(180deg, #59616a, rgb(89 97 106 / 0%));
+      background: linear-gradient(180deg, var(--line-hall), transparent);
       background-clip: text;
       color: transparent;
       font: 700 36px/1 var(--font-display);

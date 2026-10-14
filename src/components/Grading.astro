@@ -22,15 +22,25 @@ import SectionHeading from './SectionHeading.astro';
 
   <div class="container wrap">
     <div class="text">
-      <SectionHeading id="grading-title" eyebrow="02 / ГРАДАЦІЯ">
+      <SectionHeading id="grading-title" eyebrow="03 / ГРАДАЦІЯ">
         Від білого до чорного пояса
       </SectionHeading>
       <p>
-        Вісім кольорів, у кожного два ступені кю: без смужки і зі смужкою кольору наступного пояса.
-        Чорний пояс — не фініш: далі йдуть дани та подальший розвиток. На татамі кожен стоїть за
-        кольором свого пояса.
+        Кожні півроку в клубі проходить атестація: учні складають іспит на наступний пояс або
+        підтверджують поточний. Це не формальність, а чесна перевірка того, чого тренування навчили.
       </p>
-      <p>За словами федерації, перший пояс і медаль — орієнтовно за півроку занять.</p>
+      <ul class="checks">
+        <li>
+          <strong>Фізична підготовка</strong> сила, витривалість, швидкість
+        </li>
+        <li>
+          <strong>Гнучкість</strong> рухливість і контроль тіла
+        </li>
+        <li>
+          <strong>Техніки</strong> удари, кидки, больові, захист
+        </li>
+      </ul>
+      <p>Кожен рівень має свої вимоги, а з кожним новим поясом техніки стають складнішими.</p>
     </div>
 
     <div class="table" role="table" aria-label="Система поясів">
@@ -64,12 +74,9 @@ import SectionHeading from './SectionHeading.astro';
           <span class="name">{BLACK_BELT.name}</span>
           <span class="kyu">дани</span>
         </div>
-        <div class="cell" role="cell">
+        <div class="cell cell--wide" role="cell">
           <Belt color="black" />
         </div>
-        <span class="cell tbd" role="cell">
-          далі — розвиток
-        </span>
       </div>
     </div>
   </div>
@@ -95,9 +102,9 @@ import SectionHeading from './SectionHeading.astro';
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgb(26 30 34 / 15%) 0%,
-      rgb(26 30 34 / 55%) 55%,
-      #1e2328 100%
+      color-mix(in srgb, var(--bg-panel-alt) 15%, transparent) 0%,
+      color-mix(in srgb, var(--bg-panel-alt) 55%, transparent) 55%,
+      var(--bg-grading-fade) 100%
     );
   }
 
@@ -112,23 +119,23 @@ import SectionHeading from './SectionHeading.astro';
   .wrap {
     position: relative;
     display: grid;
-    gap: 32px;
+    gap: var(--space-8);
     margin-top: -40px;
-    padding-block: 40px var(--section-space);
+    padding-block: var(--space-9) var(--section-space);
   }
 
   .text {
     display: grid;
-    gap: 14px;
+    gap: var(--space-4);
   }
 
   .text :global(.heading) {
-    margin-bottom: 4px;
+    margin-bottom: var(--space-1);
   }
 
   .text p:not(.eyebrow) {
     color: var(--text-secondary);
-    font-size: 16px;
+    font-size: var(--fs-base);
     line-height: 1.6;
   }
 
@@ -136,8 +143,8 @@ import SectionHeading from './SectionHeading.astro';
     display: grid;
     grid-template-columns: minmax(104px, 0.9fr) 1fr 1fr;
     align-items: center;
-    gap: 10px;
-    padding: 11px 0;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
     border-top: 1px solid var(--line);
     transition: background 0.25s;
   }
@@ -147,7 +154,7 @@ import SectionHeading from './SectionHeading.astro';
   }
 
   .row--head {
-    padding: 0 0 8px;
+    padding: 0 0 var(--space-2);
     border: 0;
   }
 
@@ -161,14 +168,13 @@ import SectionHeading from './SectionHeading.astro';
   }
 
   .col-title,
-  .kyu,
-  .tbd {
+  .kyu {
     font-family: var(--font-mono);
   }
 
   .col-title {
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.06em;
   }
 
@@ -180,20 +186,38 @@ import SectionHeading from './SectionHeading.astro';
 
   .kyu {
     display: block;
-    margin-top: 3px;
+    margin-top: var(--space-1);
     color: var(--yellow);
-    font-size: 11px;
+    font-size: var(--fs-2xs);
   }
 
   .row--black .name {
     color: var(--yellow);
   }
 
-  .tbd {
-    color: var(--blue-light);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  .cell--wide {
+    grid-column: 2 / -1;
+  }
+
+  .checks {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .checks li {
+    display: grid;
+    gap: var(--space-1);
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--yellow);
+    color: var(--text-secondary);
+  }
+
+  .checks strong {
+    color: var(--text);
+    font-weight: 600;
   }
 
   @media (min-width: 768px) {
@@ -207,15 +231,15 @@ import SectionHeading from './SectionHeading.astro';
 
     .row {
       grid-template-columns: 266px 1fr 1fr;
-      gap: 20px;
-      padding: 10px 0;
+      gap: var(--space-5);
+      padding: var(--space-3) 0;
     }
 
     /* Desktop: kyu and name sit side by side. */
     .who {
       display: grid;
       grid-template-columns: 96px 1fr;
-      gap: 20px;
+      gap: var(--space-5);
       align-items: center;
     }
 
@@ -223,7 +247,7 @@ import SectionHeading from './SectionHeading.astro';
       grid-column: 1;
       grid-row: 1;
       margin: 0;
-      font-size: 12px;
+      font-size: var(--fs-xs);
     }
 
     .name {
@@ -240,12 +264,15 @@ import SectionHeading from './SectionHeading.astro';
   @media (min-width: 1100px) {
     .wrap {
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: 24px;
+      column-gap: var(--space-6);
     }
 
     .text {
       grid-column: 1 / span 4;
       align-content: start;
+      align-self: start;
+      position: sticky;
+      top: var(--space-9);
     }
 
     .table {

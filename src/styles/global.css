@@ -22,7 +22,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 16px;
+  scroll-padding-top: var(--space-4);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -30,7 +30,7 @@ html {
 body {
   margin: 0;
   min-width: 360px;
-  background: var(--bg-page) fixed #131517;
+  background: var(--bg-page) fixed var(--bg-base);
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.5;
@@ -85,7 +85,7 @@ a:hover {
   left: 8px;
   top: -100px;
   z-index: 100;
-  padding: 10px 16px;
+  padding: var(--space-3) var(--space-4);
   background: var(--yellow);
   color: var(--bg-section);
   font-weight: 600;
@@ -119,6 +119,11 @@ a:hover {
 
 .icon .accent {
   stroke: var(--blue-light);
+}
+
+.icon .tint {
+  fill: var(--blue-light);
+  fill-opacity: 0.22;
 }
 
 @keyframes rise {

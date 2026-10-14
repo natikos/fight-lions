@@ -18,7 +18,7 @@ const { href } = Astro.props;
     display: flex;
     align-items: stretch;
     border: 1px solid var(--yellow);
-    background: rgb(19 21 23 / 55%);
+    background: color-mix(in srgb, var(--bg-base) 55%, transparent);
     color: var(--text);
     font: 600 14px/1.2 var(--font-body);
     letter-spacing: 0.12em;
@@ -31,7 +31,7 @@ const { href } = Astro.props;
 
   .cta span {
     flex: 1;
-    padding: 17px 24px;
+    padding: var(--space-4) var(--space-6);
   }
 
   .cta b {
@@ -46,7 +46,7 @@ const { href } = Astro.props;
   }
 
   .cta:hover {
-    background: rgb(227 183 46 / 14%);
+    background: color-mix(in srgb, var(--yellow) 14%, transparent);
     color: var(--text);
   }
 

@@ -18,19 +18,19 @@ const { eyebrow, id, size = 'md' } = Astro.props;
 
 <style>
   .eyebrow {
-    margin-bottom: 16px;
+    margin-bottom: var(--space-4);
     color: var(--yellow);
     font: 500 13px var(--font-mono);
     letter-spacing: 0.08em;
   }
 
   .title {
-    font-size: clamp(32px, 6.4vw, 44px);
+    font-size: var(--fs-heading);
     line-height: 1;
     text-wrap: balance;
   }
 
   .title--lg {
-    font-size: clamp(36px, 7.4vw, 52px);
+    font-size: var(--fs-heading-lg);
   }
 </style>

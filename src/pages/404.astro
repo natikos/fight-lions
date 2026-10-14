@@ -16,22 +16,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .nf {
     display: grid;
     justify-items: start;
-    gap: 20px;
+    gap: var(--space-5);
     padding-block: 96px;
   }
 
   .code {
     color: var(--yellow);
-    font-size: clamp(80px, 20vw, 160px);
+    font-size: var(--fs-error-code);
     line-height: 0.9;
   }
 
   h1 {
-    font-size: clamp(32px, 7vw, 56px);
+    font-size: var(--fs-page-title);
   }
 
   p:not(.code) {
-    max-width: 480px;
+    max-width: var(--measure-md);
     color: var(--text-secondary);
   }
 </style>

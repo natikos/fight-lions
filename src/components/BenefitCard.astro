@@ -13,7 +13,7 @@ const { icon, title, text } = Astro.props;
 
 <li class="benefit reveal">
   <div class="benefit__icon">
-    <Icon name={icon} size={30} />
+    <Icon name={icon} size={36} />
   </div>
   <h3 class="display benefit__title">{title}</h3>
   <p class="benefit__text">{text}</p>
@@ -21,7 +21,7 @@ const { icon, title, text } = Astro.props;
 
 <style>
   .benefit {
-    padding-top: 24px;
+    padding-top: var(--space-6);
     border-top: 2px solid var(--yellow);
     color: var(--yellow);
     transition: transform 0.35s var(--ease);
@@ -37,7 +37,7 @@ const { icon, title, text } = Astro.props;
     justify-content: center;
     width: 56px;
     height: 56px;
-    margin-bottom: 18px;
+    margin-bottom: var(--space-5);
     border: 1px solid var(--line);
     background: var(--bg-raised);
     transition: border-color 0.3s;
@@ -49,15 +49,15 @@ const { icon, title, text } = Astro.props;
 
   .benefit__title {
     color: var(--text);
-    font-size: 28px;
+    font-size: var(--fs-2xl);
     line-height: 1.05;
   }
 
   .benefit__text {
-    max-width: 380px;
-    margin-top: 10px;
+    max-width: var(--measure-sm);
+    margin-top: var(--space-3);
     color: var(--text-secondary);
-    font-size: 15px;
+    font-size: var(--fs-md);
     line-height: 1.6;
   }
 </style>

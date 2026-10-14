@@ -1,13 +1,16 @@
 /** Inner SVG markup (24×24 grid). Elements with class="accent" are drawn in the secondary blue. */
 export const ICONS = {
   // Benefits
-  levels:
-    '<path d="M4 20h4v-4H4zM10 20h4v-8h-4zM16 20h4V6h-4z"/><path class="accent" d="M5 11l5-5"/>',
-  cross: '<path d="M5 5l14 14M19 5L5 19"/><circle class="accent" cx="12" cy="12" r="2.5"/>',
-  belt: '<rect x="3" y="9" width="18" height="6"/><path class="accent" d="M10 9v6h4V9"/><path d="M12 15l-2 5M12 15l2 5"/>',
-  pin: '<path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle class="accent" cx="12" cy="10" r="2.2"/>',
-  swap: '<path d="M3 8h14M13 4l4 4-4 4"/><path class="accent" d="M21 16H7M11 12l-4 4 4 4"/>',
-  flag: '<path d="M5 21V4M5 4h13l-3 4.5 3 4.5H5"/><path class="accent" d="M5 21h6"/>',
+  family:
+    '<circle class="accent tint" cx="17.5" cy="11.5" r="2"/><path class="accent tint" d="M14 21v-2.5a3.5 3.5 0 017 0V21"/><circle cx="8" cy="6.5" r="2.5"/><path d="M3.5 21v-4a4.5 4.5 0 019 0v4"/><path d="M2 21h20"/>',
+  shield:
+    '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path class="accent" d="M9 9l6 6M15 9l-6 6"/><path class="accent tint" d="M12 10.5l1.5 1.5-1.5 1.5-1.5-1.5z"/>',
+  belt: '<path d="M2 7.5h20M2 12.5h20"/><path d="M5 7.5v5M19 7.5v5"/><path d="M10.5 12.5L6.5 20.5l3 1 2.5-6.5M13.5 12.5l4 8-3 1-2.5-6.5"/><path class="accent tint" d="M9 6h6l1.5 4-1.5 4H9l-1.5-4z"/>',
+  pin: '<path d="M12 19s-6.5-5.5-6.5-10.5a6.5 6.5 0 0113 0C18.5 13.5 12 19 12 19z"/><circle class="accent tint" cx="12" cy="8.5" r="2.5"/><path d="M7 21.5h10"/>',
+  sparring:
+    '<path d="M8 17V6.5A3.5 3.5 0 0111.5 3H14a5 5 0 015 5v4a5 5 0 01-5 5z"/><path class="accent tint" d="M8 9.5H6.5A2.5 2.5 0 004 12v1.5A3.5 3.5 0 007.5 17H8"/><path class="accent tint" d="M8 17h9v4H8z"/>',
+  trophy:
+    '<path d="M7 4h10v6a5 5 0 01-10 0z"/><path d="M7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3"/><path d="M12 15v3M9 18h6v3H9z"/><path class="accent tint" d="M12 6l1 2 2.2.3-1.600 1.5.4 2.2-2-1-2 1 .4-2.2L8.800 8.300 11 8z"/>',
   // Socials and messengers
   telegram: '<path d="M3 11.5 21 4l-3.5 16-6-4.5-3 3v-5.5L17 7.5 8.5 14z"/>',
   viber:

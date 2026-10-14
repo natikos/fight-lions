@@ -23,13 +23,17 @@
 
   .orbit__glow {
     inset: 8%;
-    background: radial-gradient(closest-side, rgb(60 111 182 / 55%), rgb(60 111 182 / 0%) 72%);
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--blue) 55%, transparent),
+      transparent 72%
+    );
     animation: glow 5s ease-in-out infinite;
   }
 
   .orbit__ring--outer {
     inset: 0;
-    border: 1px dashed rgb(237 232 223 / 28%);
+    border: 1px dashed color-mix(in srgb, var(--text) 28%, transparent);
     animation: spin 50s linear infinite;
   }
 
@@ -37,13 +41,13 @@
     inset: 11%;
     border: 2px solid transparent;
     border-top-color: var(--yellow);
-    border-right-color: rgb(227 183 46 / 35%);
+    border-right-color: color-mix(in srgb, var(--yellow) 35%, transparent);
     animation: spin 22s linear infinite reverse;
   }
 
   .orbit__ring--inner {
     inset: 21%;
-    border: 1px solid rgb(60 111 182 / 60%);
+    border: 1px solid color-mix(in srgb, var(--blue) 60%, transparent);
   }
 
   @keyframes spin {
