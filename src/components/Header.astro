@@ -71,9 +71,18 @@ import SocialLink from './SocialLink.astro';
   };
 
   burger?.addEventListener('click', () => setOpen(!header?.hasAttribute('data-open')));
-  header
-    ?.querySelectorAll('.nav a')
-    .forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  // The mobile menu collapses on click and shifts the page, so scroll once the layout has settled.
+  header?.querySelectorAll<HTMLAnchorElement>('.nav a').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      const target = a.hash && document.querySelector(a.hash);
+      const wasOpen = header.hasAttribute('data-open');
+      setOpen(false);
+      if (!target || !wasOpen) return;
+      e.preventDefault();
+      history.pushState(null, '', a.hash);
+      setTimeout(() => target.scrollIntoView(), 320);
+    }),
+  );
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && header?.hasAttribute('data-open')) {
       setOpen(false);

@@ -25,6 +25,11 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Land on the section's content, not on its top padding. */
+section[id]:not(#top) {
+  scroll-margin-top: calc(var(--section-space) * -1);
+}
+
 body {
   display: flex;
   flex-direction: column;

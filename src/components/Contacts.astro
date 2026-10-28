@@ -55,17 +55,21 @@ import SocialLink from './SocialLink.astro';
 
   .inner {
     position: relative;
+    isolation: isolate;
     padding-block: var(--section-space);
   }
 
   .emblem {
-    position: relative;
+    position: absolute;
+    z-index: -1;
+    top: var(--space-9);
+    right: -18vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(220px, 56vw);
+    width: min(420px, 100vw);
     aspect-ratio: 1;
-    margin: var(--space-4) 0 var(--space-3) auto;
+    opacity: 0.45;
     pointer-events: none;
   }
 
@@ -167,11 +171,10 @@ import SocialLink from './SocialLink.astro';
 
   @media (min-width: 900px) {
     .emblem {
-      position: absolute;
       top: 60px;
       right: clamp(16px, 5vw, 70px);
       width: clamp(380px, 47vw, 680px);
-      margin: 0;
+      opacity: 1;
     }
 
     .title {

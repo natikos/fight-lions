@@ -51,7 +51,7 @@ const { coach, featured = false } = Astro.props;
   .coach__photo {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4 / 3.6;
+    aspect-ratio: 1 / 1.1;
     border: 1px solid var(--line-photo);
     background: repeating-linear-gradient(
       135deg,
@@ -100,11 +100,5 @@ const { coach, featured = false } = Astro.props;
     max-width: 44ch;
     line-height: 1.5;
     text-wrap: pretty;
-  }
-
-  @media (min-width: 700px) {
-    .coach__photo {
-      aspect-ratio: 1 / 1.1;
-    }
   }
 </style>
