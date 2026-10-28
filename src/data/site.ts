@@ -19,14 +19,17 @@ export interface Social {
   label: string;
   /** `null` until the real link is provided; such socials are not rendered. */
   href: string | null;
+  /** Desktop browsers can't open the app link, so a click copies this instead. */
+  copyText?: string;
 }
 
 export const MESSENGERS: Social[] = [
-  { id: 'telegram', label: 'Telegram', href: 'https://t.me/Rykopashka' },
+  { id: 'telegram', label: 'Telegram', href: 'https://t.me/Rukopashka_Lviv' },
   {
     id: 'viber',
     label: 'Viber',
     href: `viber://chat?number=${encodeURIComponent(SITE.phone.href)}`,
+    copyText: SITE.phone.href,
   },
 ];
 

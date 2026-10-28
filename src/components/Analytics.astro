@@ -1,0 +1,21 @@
+---
+import { CLARITY_ID } from '../utils/env';
+
+const enabled = Boolean(CLARITY_ID);
+---
+
+{enabled && <script is:inline define:vars={{ id: CLARITY_ID }}>
+  var loaded = false;
+  function load() {
+    if (loaded) return;
+    loaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.clarity.ms/tag/' + id;
+    document.head.appendChild(s);
+  }
+  ['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
+    addEventListener(e, load, { once: true, passive: true });
+  });
+  setTimeout(load, 5000);
+</script>}

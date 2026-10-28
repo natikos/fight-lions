@@ -21,12 +21,31 @@ const external = social.href?.startsWith('http');
     aria-label={variant === 'icon' ? social.label : undefined}
     target={external ? '_blank' : undefined}
     rel={external ? 'noopener noreferrer' : undefined}
+    data-copy={social.copyText}
     style={`--size:${size}px`}
   >
     <Icon name={social.id} size={variant === 'icon' ? Math.round(size * 0.42) : 20} />
     {variant === 'label' && <span>{social.label}</span>}
   </a>
 )}
+
+<script>
+  const COPIED_MS = 2000;
+  const desktop = matchMedia('(hover: hover) and (pointer: fine)');
+
+  document.addEventListener('click', async (event) => {
+    const link = (event.target as Element).closest<HTMLElement>('[data-copy]');
+    if (!link || !desktop.matches) return;
+    event.preventDefault();
+    try {
+      await navigator.clipboard.writeText(link.dataset.copy!);
+    } catch {
+      return;
+    }
+    link.dataset.copied = '';
+    setTimeout(() => delete link.dataset.copied, COPIED_MS);
+  });
+</script>
 
 <style>
   .social {
@@ -46,6 +65,23 @@ const external = social.href?.startsWith('http');
   .social:hover {
     color: var(--white);
     filter: brightness(1.15);
+  }
+
+  .social[data-copy] {
+    position: relative;
+  }
+
+  .social[data-copied]::after {
+    content: 'Номер скопійовано';
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    padding: var(--space-2) var(--space-3);
+    background: var(--black);
+    color: var(--white);
+    font: 500 var(--fs-13) var(--font-mono);
+    white-space: nowrap;
+    z-index: 1;
   }
 
   .social--icon {
