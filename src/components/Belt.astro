@@ -5,16 +5,31 @@ interface Props {
   color: BeltColor;
   /** Draws a stripe near the end: the second, "striped" grade. */
   stripe?: BeltColor;
+  /** Embroidered text along the belt (e.g. the surname on a black belt). */
+  label?: string;
 }
 
-const { color, stripe } = Astro.props;
+const { color, stripe, label } = Astro.props;
 ---
 
 <div class="belt" style={`--belt:var(--belt-${color})`} data-color={color}>
   {stripe && <i class="tip" style={`--belt:var(--belt-${stripe})`}></i>}
+  {label && <span class="label">{label}</span>}
 </div>
 
 <style>
+  .label {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    color: var(--yellow);
+    font: 700 var(--fs-12) / 1 var(--font-display);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
   .belt {
     position: relative;
     width: 100%;

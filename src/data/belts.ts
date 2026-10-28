@@ -21,4 +21,10 @@ export const BELTS: Belt[] = [
   { kyu: '2 · 1', name: 'Коричневий', color: 'brown', stripe: 'black' },
 ];
 
-export const BLACK_BELT = { kyu: 'дан', name: 'Чорний', color: 'black' as BeltColor };
+export const BLACK_BELT = {
+  kyu: 'дан',
+  name: 'Чорний',
+  color: 'black' as BeltColor,
+  /** Every black belt carries its owner's surname. */
+  label: 'Ваше прізвище',
+};

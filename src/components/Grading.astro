@@ -53,8 +53,10 @@ import SectionHeading from './SectionHeading.astro';
 
     <div class="table" role="table" aria-label="Система поясів">
       <div class="row row--head" role="row">
-        <span class="col-title" role="columnheader">
-          КЮ · ПОЯС
+        <span class="col-title who" role="columnheader">
+          <span class="kyu-title">КЮ</span>
+          <span class="sep"> · </span>
+          <span class="name-title">ПОЯС</span>
         </span>
         <span class="col-title" role="columnheader">
           БЕЗ СМУЖКИ
@@ -83,7 +85,7 @@ import SectionHeading from './SectionHeading.astro';
           <span class="kyu">дани</span>
         </div>
         <div class="cell cell--wide" role="cell" aria-colspan="2">
-          <Belt color="black" />
+          <Belt color={BLACK_BELT.color} label={BLACK_BELT.label} />
         </div>
       </div>
     </div>
@@ -270,16 +272,22 @@ import SectionHeading from './SectionHeading.astro';
       align-items: center;
     }
 
-    .kyu {
+    .kyu,
+    .kyu-title {
       grid-column: 1;
       grid-row: 1;
       margin: 0;
       font-size: var(--fs-12);
     }
 
-    .name {
+    .name,
+    .name-title {
       grid-column: 2;
       grid-row: 1;
+    }
+
+    .sep {
+      display: none;
     }
 
     .wrap {
