@@ -59,6 +59,8 @@
 
   /* Minimum comfortable tap area. */
   --touch-target: 44px;
+  --header-height: 69px;
+  --z-header: 10;
 
   /* Type scale: fixed steps, named by pixel size. */
   --fs-11: 11px;
