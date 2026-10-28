@@ -70,6 +70,13 @@ import SocialLink from './SocialLink.astro';
     burger.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
   };
 
+  // The header wraps onto several rows below 1100px, so its real height drives the anchor offset.
+  if (header) {
+    new ResizeObserver(() =>
+      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`),
+    ).observe(header);
+  }
+
   burger?.addEventListener('click', () => setOpen(!header?.hasAttribute('data-open')));
   // The mobile menu collapses on click and shifts the page, so scroll once the layout has settled.
   header?.querySelectorAll<HTMLAnchorElement>('.nav a').forEach((a) =>
